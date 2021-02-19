@@ -50,14 +50,17 @@ idxs = []
 for i in range(args.range[0], args.range[1]):
     idxs.append(i)
 
-ROOT = tk.Tk()
-ROOT.option_add('*font', 'Helvetica -30')
-Window = Frame(ROOT)
-TextWidget = Text(Window)
-TextWidget.pack()
-Window.pack()
-TextWidget.focus_set()
-ROOT.withdraw()
+def pop_up():
+    ROOT = tk.Tk()
+    ROOT.option_add('*font', 'Helvetica -30')
+    Window = Frame(ROOT)
+    TextWidget = Text(Window)
+    TextWidget.pack()
+    Window.pack()
+    Window.after(1, lambda: Window.focus_force())
+    TextWidget.focus_set()
+    ROOT.withdraw()
+    return ROOT
 
 segs = []
 preds = []
@@ -69,6 +72,7 @@ for root,dirs,video_segments in os.walk('./segments/'):
 
     for i in idxs:
         subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/IMG_4654-{}-subs.mp4'.format(i)])
+        ROOT = pop_up()
         inp = MyDialog(ROOT, "Enter word guess for segment {}: \n".format(i)).result
         with open('segments/IMG_4654-seg-{}.srt'.format(i)) as f:
             contents = f.read()
