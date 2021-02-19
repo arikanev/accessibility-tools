@@ -4,6 +4,21 @@ from random import shuffle
 import subprocess, sys
 import tkinter as tk
 from tkinter import simpledialog
+from tkinter import *
+
+class MyDialog(simpledialog.Dialog):
+    def body(self, master):
+        self.geometry("800x600")
+        tk.Label(master, text="What did Sara just say?").grid(row=0)
+
+        self.e1 = tk.Entry(master)
+        self.e1.grid(row=0, column=1)
+        return self.e1 # initial focus
+
+    def apply(self):
+        first = self.e1.get()
+        self.result = first
+
 
 parser = argparse.ArgumentParser(description='Process range.')
 parser.add_argument('--range', '-r', type=int, nargs=2,
@@ -36,10 +51,13 @@ for i in range(args.range[0], args.range[1]):
     idxs.append(i)
 
 ROOT = tk.Tk()
-
+ROOT.option_add('*font', 'Helvetica -30')
+Window = Frame(ROOT)
+TextWidget = Text(Window)
+TextWidget.pack()
+Window.pack()
+TextWidget.focus_set()
 ROOT.withdraw()
-
-padding = 50 * " "
 
 segs = []
 preds = []
@@ -51,7 +69,7 @@ for root,dirs,video_segments in os.walk('./segments/'):
 
     for i in idxs:
         subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/IMG_4654-{}-subs.mp4'.format(i)])
-        inp = simpledialog.askstring(title="Enter word guess for segment {}: \n".format(i), prompt="What did Sara just say?" + padding)
+        inp = MyDialog(ROOT, "Enter word guess for segment {}: \n".format(i)).result
         with open('segments/IMG_4654-seg-{}.srt'.format(i)) as f:
             contents = f.read()
             print(contents)
