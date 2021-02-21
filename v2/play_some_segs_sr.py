@@ -4,22 +4,9 @@ from random import shuffle
 import speech_recognition as sr
 import subprocess, sys
 from sys import platform
+import time
 import tkinter as tk
-from tkinter import simpledialog
 from tkinter import *
-
-class MyDialog(simpledialog.Dialog):
-    def body(self, master):
-        self.geometry("800x600")
-        tk.Label(master, text="What did Sara just say?").grid(row=0)
-
-        self.e1 = tk.Entry(master)
-        self.e1.grid(row=0, column=1)
-        return self.e1 # initial focus
-
-    def apply(self):
-        first = self.e1.get()
-        self.result = first
 
 
 parser = argparse.ArgumentParser(description='Process range.')
@@ -52,21 +39,12 @@ idxs = []
 for i in range(args.range[0], args.range[1]):
     idxs.append(i)
 
-def pop_up():
-    ROOT = tk.Tk()
-    ROOT.option_add('*font', 'Helvetica -30')
-    Window = Frame(ROOT)
-    TextWidget = Text(Window)
-    TextWidget.pack()
-    Window.pack()
-    if platform == "linux" or platform == "linux2":
-        ROOT.focus_force()
-    elif platform == "darwin":
-        Window.after(1, lambda: Window.focus_force())
-    TextWidget.focus_set()
-    ROOT.withdraw()
-    return ROOT
-
+def pop_up(text="What did Sara say? Listening..."):
+    root = tk.Tk()
+    root.option_add('*font', 'Helvetica -30')
+    root.after(1000, root.destroy)
+    Message(text=text, master=root, padx=20, pady=20).pack()
+    root.mainloop()
 # segs = []
 preds = []
 
@@ -79,22 +57,27 @@ preds = []
 for i in idxs:
     spoken_answer = None
     subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/IMG_4654-{}-subs.mp4'.format(i)])
-    # ROOT = pop_up()
     r = sr.Recognizer()
     m = sr.Microphone()
-
     while spoken_answer is None:
         with m as source:
             r.adjust_for_ambient_noise(source)
-            print('What did Sara say?')
+            # print('What did Sara say?')
+            pop_up()
+            # print("listening...")
+            start_listen = time.time()
             audio = r.listen(source)
+            print("listen duration: {}".format(time.time() - start_listen))
             try:
+                # print("recognizing spoken answer")
+                start_reco = time.time()
                 spoken_answer = r.recognize_google(audio)
+                print("recognition duration: {}".format(time.time() - start_reco))
+                pop_up(text=spoken_answer)
             except:
                 continue
 
     inp = spoken_answer
-
     print(inp)
 
     with open('segments/IMG_4654-seg-{}.srt'.format(i)) as f:
