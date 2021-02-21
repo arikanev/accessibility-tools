@@ -24,7 +24,7 @@ class MyDialog(simpledialog.Dialog):
 parser = argparse.ArgumentParser(description='Process range.')
 parser.add_argument('--range', '-r', type=int, nargs=2,
                     help='start and end integer range of videos to select. In form start end')
-
+parser.add_argument('--train', '-t', action='store_true', help='enables training mode')
 args = parser.parse_args()
 
 # num_segs = len([name for name in os.listdir('./segments/') if os.path.isfile(os.path.join('./segments/', name))])
@@ -80,6 +80,9 @@ for root,dirs,video_segments in os.walk('./segments/'):
 
     for i in idxs:
         subprocess.call(["mpv", '--fs'] + ['segments/IMG_4654-{}-subs.mp4'.format(i)])
+        if args.train:
+            continue
+
         ROOT = pop_up()
         inp = MyDialog(ROOT, "Enter word guess for segment {}: \n".format(i)).result
         with open('segments/IMG_4654-seg-{}.srt'.format(i)) as f:
