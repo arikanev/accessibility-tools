@@ -2,6 +2,7 @@ import argparse
 import os
 from random import shuffle
 import subprocess, sys
+from sys import platform
 import tkinter as tk
 from tkinter import simpledialog
 from tkinter import *
@@ -57,7 +58,10 @@ def pop_up():
     TextWidget = Text(Window)
     TextWidget.pack()
     Window.pack()
-    Window.after(1, lambda: Window.focus_force())
+    if platform == "linux" or platform == "linux2":
+        ROOT.focus_force()
+    elif platform == "darwin":
+        Window.after(1, lambda: Window.focus_force())
     TextWidget.focus_set()
     ROOT.withdraw()
     return ROOT

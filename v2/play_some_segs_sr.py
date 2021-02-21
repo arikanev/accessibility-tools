@@ -3,6 +3,7 @@ import os
 from random import shuffle
 import speech_recognition as sr
 import subprocess, sys
+from sys import platform
 import tkinter as tk
 from tkinter import simpledialog
 from tkinter import *
@@ -58,8 +59,10 @@ def pop_up():
     TextWidget = Text(Window)
     TextWidget.pack()
     Window.pack()
-    ROOT.focus_force() # This is for linux, comment out following line
-    # Window.after(1, lambda: Window.focus_force()) # This is for OSX, comment out above line
+    if platform == "linux" or platform == "linux2":
+        ROOT.focus_force()
+    elif platform == "darwin":
+        Window.after(1, lambda: Window.focus_force())
     TextWidget.focus_set()
     ROOT.withdraw()
     return ROOT
