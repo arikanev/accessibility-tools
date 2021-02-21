@@ -31,7 +31,7 @@ general downloads
 
 `bash main.sh`
 
-`python3 play_some_segs.py -r startrangeint endrangeint`
+`python3 play_some_segs.py -r startrangeint endrangeint` (end range not inclusive)
 
 ## run (speech recognition version)
 
