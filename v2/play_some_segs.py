@@ -71,13 +71,15 @@ def pop_up():
 segs = []
 preds = []
 for root,dirs,video_segments in os.walk('./segments/'):
+    '''
     for i in idxs:
             # subprocess.call([opener, 'segments/IMG_4654-{}-subs.mp4'.format(i)])
         segs.append('segments/IMG_4654-{}-subs.mp4'.format(i))
     # subprocess.call(["mpv", '--fs', '--loop-file=inf'] + segs)    
+    '''
 
     for i in idxs:
-        subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/IMG_4654-{}-subs.mp4'.format(i)])
+        subprocess.call(["mpv", '--fs'] + ['segments/IMG_4654-{}-subs.mp4'.format(i)])
         ROOT = pop_up()
         inp = MyDialog(ROOT, "Enter word guess for segment {}: \n".format(i)).result
         with open('segments/IMG_4654-seg-{}.srt'.format(i)) as f:
