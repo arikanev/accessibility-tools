@@ -2,8 +2,21 @@
 
 ## dependencies 
 
-`brew install ffmpeg`
+mac OSX
 
+`brew install ffmpeg`
+`brew install portaudio`
+`pip3 install pyaudio`
+
+linux
+
+`sudo apt-get install python-pyaudio python3-pyaudio`
+`sudo apt install ffmpeg`
+
+general downloads
+
+`pip3 install SpeechRecognition`
+`pip3 install gdown`
 
 # v1 (from youtube video source)
 
