@@ -18,8 +18,13 @@
 
 `bash main.sh`
 
-`python3 play_some_segs -r startrangeint endrangeint`
+`python3 play_some_segs.py -r startrangeint endrangeint`
 
+## run (speech recognition version)
+
+`bash main.sh`
+
+`python3 play_some_segs_sr.py -r startrangeint endrangeint`
 
 # Future Steps!
 
