@@ -71,27 +71,23 @@ def pop_up():
 segs = []
 preds = []
 for root,dirs,video_segments in os.walk('./segments/'):
-    '''
-    for i in idxs:
+    if args.train:
+        for i in idxs:
             # subprocess.call([opener, 'segments/IMG_4654-{}-subs.mp4'.format(i)])
-        segs.append('segments/IMG_4654-{}-subs.mp4'.format(i))
-    # subprocess.call(["mpv", '--fs', '--loop-file=inf'] + segs)    
-    '''
-
-    for i in idxs:
-        subprocess.call(["mpv", '--fs'] + ['segments/IMG_4654-{}-subs.mp4'.format(i)])
-        if args.train:
-            continue
-
-        ROOT = pop_up()
-        inp = MyDialog(ROOT, "Enter word guess for segment {}: \n".format(i)).result
-        with open('segments/IMG_4654-seg-{}.srt'.format(i)) as f:
-            contents = f.read()
-            print(contents)
-            if inp and not inp.isspace() and (inp in contents or inp.lower() in contents or inp.capitalize() in contents):
-                preds.append(1)
-            else:
-                preds.append(0)
+            segs.append('segments/IMG_4654-{}-subs.mp4'.format(i))
+        subprocess.call(["mpv", '--fs', '--shuffle'] + segs)    
+    else:
+        for i in idxs:
+            subprocess.call(["mpv", '--fs'] + ['segments/IMG_4654-{}-subs.mp4'.format(i)])
+            ROOT = pop_up()
+            inp = MyDialog(ROOT, "Enter word guess for segment {}: \n".format(i)).result
+            with open('segments/IMG_4654-seg-{}.srt'.format(i)) as f:
+                contents = f.read()
+                print(contents)
+                if inp and not inp.isspace() and (inp in contents or inp.lower() in contents or inp.capitalize() in contents):
+                    preds.append(1)
+                else:
+                    preds.append(0)
 print(preds)
 # calculate and print WER
 print("WER (% of correctly guessed words): {}".format(len([i for i in preds if i == 1]) / len(preds)))
