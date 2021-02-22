@@ -109,7 +109,7 @@ for root,dirs,video_segments in os.walk('./segments/'):
 with open('{}_{}-{}.log'.format(args.f, args.range[0], args.range[1]), 'w') as f:
     f.write("correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
 with open('summary.log', 'a') as f:
-    f.write('{} range {} - {}'.format(args.f, args.range[0], args.range[1])\n"correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
+    f.write("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}".format(args.f, args.range[0], args.range[1], cor_words, inc_words))
 print(preds)
 # calculate and print WER
 print("WER (% of correctly guessed words): {}".format(len([i for i in preds if i == 1]) / len(preds)))
