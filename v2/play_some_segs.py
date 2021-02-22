@@ -109,19 +109,21 @@ with open('{}_{}-{}.log'.format(args.fname, args.range[0], args.range[1]), 'w') 
 
 prev_WER = None
 
+N = 0
+
 with open('running_WER.log', 'r') as f:
     for line in f.readlines():
         prev_WER = float(line)
-
+        N += 1
 instance_WER = len([i for i in preds if i == 1]) / len(preds)
 
 if prev_WER is not None:
-    running_WER = (prev_WER + instance_WER) / 2
+    running_WER = ((prev_WER * N) + instance_WER) / (N + 1)
 else:
     running_WER = instance_WER
 
 
-with open('summary.log', 'a') as f:
+with open('{}_summary.log'.format(args.fname), 'a') as f:
     f.write("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance WER: {}\nrunning WER: {}".format(args.fname, args.range[0], args.range[1], cor_words, inc_words, instance_WER, running_WER))
 
 print(preds)
@@ -130,7 +132,7 @@ print(preds)
 print("WER (% of correctly guessed words in range {} - {}): {}".format(args.range[0], args.range[1], instance_WER))
 print("Running WER: {}".format(running_WER))
 
-with open('running_WER.log', 'w') as f:
+with open('running_WER.log', 'a') as f:
     f.write(str(running_WER))
 
 print("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, args.range[0], args.range[1], cor_words, inc_words))
