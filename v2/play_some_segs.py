@@ -134,6 +134,6 @@ print("WER (% of correctly guessed words in range {} - {}): {}".format(args.rang
 print("Running WER: {}".format(running_WER))
 
 with open('running_WER.log', 'a') as f:
-    f.write(str(running_WER))
+    f.write(str(running_WER) + '\n')
 
 print("\n{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, args.range[0], args.range[1], cor_words, inc_words))

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if test -f "running_WER.log"; then
-    echo ""
+    rm running_WER.log
 else
     touch running_WER.log
 fi
