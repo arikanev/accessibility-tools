@@ -125,7 +125,7 @@ else:
 
 
 with open('{}_summary.log'.format(args.fname), 'a') as f:
-    f.write("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance WER: {}\nrunning WER: {}".format(args.fname, args.range[0], args.range[1], cor_words, inc_words, instance_WER, running_WER))
+    f.write("\n{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance WER: {}\nrunning WER: {}".format(args.fname, args.range[0], args.range[1], cor_words, inc_words, instance_WER, running_WER))
 
 print(preds)
 
