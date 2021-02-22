@@ -31,7 +31,7 @@ general downloads
 
 `bash main.sh`
 
-`python3 play_some_segs.py -r startrangeint endrangeint` (end range not inclusive)
+`bash lipread_test.sh startrangeint endrangeint`
 
 ## run (speech recognition version)
 
