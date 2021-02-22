@@ -115,6 +115,7 @@ with open('running_WER.log', 'r') as f:
     for line in f.readlines():
         prev_WER = float(line)
         N += 1
+
 instance_WER = len([i for i in preds if i == 1]) / len(preds)
 
 if prev_WER is not None:
@@ -135,4 +136,4 @@ print("Running WER: {}".format(running_WER))
 with open('running_WER.log', 'a') as f:
     f.write(str(running_WER))
 
-print("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, args.range[0], args.range[1], cor_words, inc_words))
+print("\n{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, args.range[0], args.range[1], cor_words, inc_words))
