@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if test -f "running_WER.log"; then
-    rm running_WER.log
-    touch running_WER.log
+    echo "running WER exists, this must be continuation testing of the same device"
 else
+    echo "running WER not found, we must be starting testing on a new device"
     touch running_WER.log
 fi
 
