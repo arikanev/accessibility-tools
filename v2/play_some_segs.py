@@ -125,8 +125,11 @@ with open('summary.log', 'a') as f:
     f.write("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance WER: {}\nrunning WER: {}".format(args.fname, args.range[0], args.range[1], cor_words, inc_words, instance_WER, running_WER))
 
 print(preds)
+
 # calculate and print WER
 print("WER (% of correctly guessed words in range {} - {}): {}".format(args.range[0], args.range[1], instance_WER))
+print("Running WER: {}".format(running_WER))
+
 with open('running_WER.log', 'w') as f:
     f.write(running_WER)
 print("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, args.range[0], args.range[1], cor_words, inc_words))
