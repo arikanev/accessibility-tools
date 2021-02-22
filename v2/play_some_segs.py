@@ -106,11 +106,22 @@ for root,dirs,video_segments in os.walk('./segments/'):
                     inc_words.append(inp)
 with open('{}_{}-{}.log'.format(args.fname, args.range[0], args.range[1]), 'w') as f:
     f.write("correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
+
+prev_WER = None
+
+with open('running_WER.log', 'r') as f:
+    for line in f.readlines():
+        prev_WER = float(line)
+
+instance_WER = len([i for i in preds if i == 1]) / len(preds)
+running_WER = (prev_WER + instance_WER) / 2
+
 with open('summary.log', 'a') as f:
-    f.write("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}".format(args.fname, args.range[0], args.range[1], cor_words, inc_words))
+    f.write("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance WER: {}\nrunning WER: {}".format(args.fname, args.range[0], args.range[1], cor_words, inc_words, instance_WER, running_WER))
 
 print(preds)
 # calculate and print WER
-print("WER (% of correctly guessed words): {}".format(len([i for i in preds if i == 1]) / len(preds)))
-
-print("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}".format(args.fname, args.range[0], args.range[1], cor_words, inc_words))
+print("WER (% of correctly guessed words in range {} - {}): {}".format(args.range[0], args.range[1], instance_WER))
+with open('running_WER.log', 'w') as f:
+    f.write(running_WER)
+print("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, args.range[0], args.range[1], cor_words, inc_words))
