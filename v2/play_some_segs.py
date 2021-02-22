@@ -66,12 +66,10 @@ def pop_up():
     TextWidget.pack()
     Window.pack()
     
-    '''
     if platform == "linux" or platform == "linux2":
         ROOT.focus_force()
     elif platform == "darwin":
         Window.after(1, lambda: Window.focus_force())
-    '''
 
     TextWidget.focus_set()
     ROOT.withdraw()
@@ -106,10 +104,10 @@ for root,dirs,video_segments in os.walk('./segments/'):
                 else:
                     preds.append(0)
                     inc_words.append(inp)
-with open('{}_{}-{}.log'.format(args.f, args.range[0], args.range[1]), 'w') as f:
+with open('{}_{}-{}.log'.format(args.fname, args.range[0], args.range[1]), 'w') as f:
     f.write("correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
 with open('summary.log', 'a') as f:
-    f.write("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}".format(args.f, args.range[0], args.range[1], cor_words, inc_words))
+    f.write("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}".format(args.fname, args.range[0], args.range[1], cor_words, inc_words))
 print(preds)
 # calculate and print WER
 print("WER (% of correctly guessed words): {}".format(len([i for i in preds if i == 1]) / len(preds)))
