@@ -21,12 +21,13 @@ class MyDialog(simpledialog.Dialog):
         self.result = first
 
 
-parser = argparse.ArgumentParser(description='Process range.')
+parser = argparse.ArgumentParser(description='args for playing phoneme segments')
 parser.add_argument('--range', '-r', type=int, nargs=2,
                     help='start and end integer range of videos to select. In form start end')
 parser.add_argument('--train', '-t', action='store_true', help='enables training mode')
 parser.add_argument('--numreps', '-nr', type=int, nargs=1, help='number of repetitions of phonemes during training')
 parser.add_argument('--shuffle', '-s', action='store_true', help='shuffles videos randomly')
+parser.add_argument('--fname', '-f', type=str, default="", help='name heading of results logfile')
 
 args = parser.parse_args()
 
@@ -64,12 +65,14 @@ def pop_up():
     TextWidget = Text(Window)
     TextWidget.pack()
     Window.pack()
+    
     '''
     if platform == "linux" or platform == "linux2":
         ROOT.focus_force()
     elif platform == "darwin":
         Window.after(1, lambda: Window.focus_force())
     '''
+
     TextWidget.focus_set()
     ROOT.withdraw()
     return ROOT
@@ -103,8 +106,10 @@ for root,dirs,video_segments in os.walk('./segments/'):
                 else:
                     preds.append(0)
                     inc_words.append(inp)
-with open('results{}-{}.log'.format(args.range[0], args.range[1]), 'w') as f:
+with open('{}_{}-{}.log'.format(args.f, args.range[0], args.range[1]), 'w') as f:
     f.write("correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
+with open('summary.log', 'a') as f:
+    f.write('{} range {} - {}'.format(args.f, args.range[0], args.range[1])\n"correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
 print(preds)
 # calculate and print WER
 print("WER (% of correctly guessed words): {}".format(len([i for i in preds if i == 1]) / len(preds)))
