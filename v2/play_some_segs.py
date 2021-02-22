@@ -108,6 +108,9 @@ with open('{}_{}-{}.log'.format(args.fname, args.range[0], args.range[1]), 'w') 
     f.write("correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
 with open('summary.log', 'a') as f:
     f.write("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}".format(args.fname, args.range[0], args.range[1], cor_words, inc_words))
+
 print(preds)
 # calculate and print WER
 print("WER (% of correctly guessed words): {}".format(len([i for i in preds if i == 1]) / len(preds)))
+
+print("{} range {} - {}\ncorrect: \n {} \nincorrect: \n {}".format(args.fname, args.range[0], args.range[1], cor_words, inc_words))
