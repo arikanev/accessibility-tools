@@ -25,7 +25,13 @@ parser = argparse.ArgumentParser(description='Process range.')
 parser.add_argument('--range', '-r', type=int, nargs=2,
                     help='start and end integer range of videos to select. In form start end')
 parser.add_argument('--train', '-t', action='store_true', help='enables training mode')
+parser.add_argument('--numreps', '-nr', type=int, nargs=1, help='number of repetitions of phonemes during training')
+parser.add_argument('--shuffle', '-s', action='store_true', help='shuffles videos randomly')
+
 args = parser.parse_args()
+
+if not args.train and args.numreps:
+    parser.error('--numreps can only be set when --train flag is enabled.')
 
 # num_segs = len([name for name in os.listdir('./segments/') if os.path.isfile(os.path.join('./segments/', name))])
 
@@ -72,12 +78,17 @@ segs = []
 preds = []
 cor_words = []
 inc_words = []
+
+if args.shuffle:
+    shuffle(idxs)
+
 for root,dirs,video_segments in os.walk('./segments/'):
     if args.train:
         for i in idxs:
             # subprocess.call([opener, 'segments/IMG_4654-{}-subs.mp4'.format(i)])
-            segs.append('segments/IMG_4654-{}-subs.mp4'.format(i))
-        subprocess.call(["mpv", '--fs', '--shuffle'] + segs)    
+            for n in range(args.numreps[0]):
+                segs.append('segments/IMG_4654-{}-subs.mp4'.format(i))
+        subprocess.call(["mpv", '--fs'] + segs)    
     else:
         for i in idxs:
             subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/IMG_4654-{}-subs.mp4'.format(i)])
