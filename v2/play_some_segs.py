@@ -103,7 +103,7 @@ for root,dirs,video_segments in os.walk('./segments/'):
                 else:
                     preds.append(0)
                     inc_words.append(inp)
-with open('results.log', 'w') as f:
+with open('results{}-{}.log'.format(args.range[0], args.range[1]), 'w') as f:
     f.write("correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
 print(preds)
 # calculate and print WER
