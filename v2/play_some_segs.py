@@ -25,7 +25,7 @@ parser = argparse.ArgumentParser(description='args for playing phoneme segments'
 parser.add_argument('--range', '-r', type=int, nargs=2,
                     help='start and end integer range of videos to select. In form start end')
 parser.add_argument('--train', '-t', action='store_true', help='enables training mode')
-parser.add_argument('--numreps', '-nr', type=int, nargs=1, default=1, help='number of repetitions of phonemes during training')
+parser.add_argument('--numreps', '-nr', type=int, nargs=1, default=[1], help='number of repetitions of phonemes during training')
 parser.add_argument('--shuffle', '-s', action='store_true', help='shuffles videos randomly')
 parser.add_argument('--fname', '-f', type=str, default="", help='name heading of results logfile')
 
