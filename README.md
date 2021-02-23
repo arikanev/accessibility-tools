@@ -50,6 +50,6 @@ general downloads
 - MPV player should remain open as popup for user input appears after each vid. Try increasing CPU threads to 2 and/or running parallel process.
 - Haptic isolation training tool - decrease brightness over time of videos.
 - editing user inputs in case of typos
-
+- show correct answer for missed words
 
 - add TooLoud interface of some sort. We want it on phones or haptics.
