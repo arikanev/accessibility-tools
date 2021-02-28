@@ -27,29 +27,32 @@ general downloads
 
 # v2 (from local video source, (and arguably better interface for playback))
 
+## split vids
+
+`bash main.sh`
+
 ## run
 
-`bash main.sh`
-
-`bash lipread_test.sh startrangeint endrangeint`
+`python3 play_some_segs_sr.py -r startrangeint endrangeint -tr -t`
 
 ## run (speech recognition version)
-
-`bash main.sh`
 
 `python3 play_some_segs_sr.py -r startrangeint endrangeint`
 
 # Future Steps!
 
+- editing user inputs in case of typos
+
 - Lets get youtube sourcing from first version (pytube lib), interfacing with the code in the second version, for increased funcitionality of second version. 
-- Can simply add youtube link to CLI args embedded in bash script, and add arg for youtube link in v2/split_vid.py. The code for downloading youtube vid is in v1/rand_seg.py
-- Speech recognition for writing SRT files.https://medium.com/searce/generate-srt-file-subtitles-using-google-clouds-speech-to-text-api-402b2f1da3bd
-- Find someone to pay for LFS storage, or just get test video to use from: https://drive.google.com/file/d/1_YWTi4gTOS6e5AKuGXWopAMUPDFU3IRl/view?usp=sharing
+  - Can simply add youtube link to CLI args embedded in bash script, and add arg for youtube link in v2/split_vid.py. The code for downloading youtube vid is in v1/rand_seg.py
+
 - Display speech recognition interface (basically make it easier to capture user speech at correct moments) in dialog/popup boxes
   - dig into SpeechRecognition api, eventually use some sort of more customizable alternative, parratron, live transcribe, something for HOH speech to be understood
-- MPV player should remain open as popup for user input appears after each vid. Try increasing CPU threads to 2 and/or running parallel process.
-- Haptic isolation training tool - decrease brightness over time of videos.
-- editing user inputs in case of typos
-- show correct answer for missed words
 
-- add TooLoud interface of some sort. We want it on phones or haptics.
+- MPV player should remain open as popup for user input appears after each vid. Try increasing CPU threads to 2 and/or running parallel process.
+
+- Haptic isolation training tool - decrease brightness over time of videos.
+
+- add speech rec as alternative option to text boxes, argparse
+
+# - separate accessibility tool project: TooLoud interface of some sort. We want it on phones or haptics.
