@@ -1,42 +1,42 @@
-1. S S Snake 0 - 6
-2. A A Ant   6 - 12
-3. T T Tennis 12 - 17
-4. I I Ink 18 - 24
-5. P P Puff 24 - 30
-6. N N Nett 30 - 35
-7. Ck Ck Cat 35 - 41
-8. E E Egg 41 - 47
-9. H H Hop 0 - 5
-10. R R Rag 51 - 56
-11. M M Meal 56 - 1:02
-12. D D Drum 1:02 - 1:07
-13. G g gurgle 1:07 - 1:14
-14. Ah ah on 1:14 - 1:20
-15. Uh uh umbrella 1:20 - 1:27
-16. L l lollipop 1:27 - 1:33
-17. F f fish 1:33 - 1:41
-18. Buh Buh Bat 1:42 - 1:48
-19. Ay ay pain 1:48 - 1:54
-20. Juh juh jam 1:54 - 2:02
-21. Oh oh goat 2:01 - 2:08
-22. I i Tie 2:08 - 2:15
-23. Ee Ee Bee 2:15 - 2:22
-24. Or or fork 2:23 - 2:30
-25. Zz Zz Buzz 0 - 9
-26. Wuh wuh wind 2:38 - 2:43
-27. Ng Ng Strong 2:43 - 2:51
-28. Vuh Vuh Van 2:52 - 2:59
-29. Uh uh book 2:58 - 3:05
-30. Oo Oo Moon 3:04 - 3:10
-31. Yuh yuh yogurt 3:11 - 3:16
-32. Xc Xc Fox 3:16 - 3:23
-33. Chuh Chuh chicken 3:23 - 3:30
-34. Sh Sh hush 3:31 - 3:38
-35. Thuh thuh this 3:38 - 3:44
-36. Thh Thh three 3:44 - 3:51
-37. Quh Quh Quack 3:50 - 3:56
-38. Ow ow ouch 3:56 - 4:03
-39. Oy oy oil 4:04 - 4:11
-40. Yue yue Que 4:11 - 4:18
-41. Uhr uhr Mixer 4:19 - 4:25
-42. Ar ar arm 4:24 - 4:31
+1. Snake 0 - 6
+2. Ant 6 - 12
+3. Tennis 12 - 17
+4. Ink 18 - 24
+5. Puff 24 - 30
+6. Nett 30 - 35
+7. Cat 35 - 41
+8. Egg 41 - 47
+9. Hop 0 - 5
+10. Rag 51 - 56
+11. Meal 56 - 1:02
+12. Drum 1:02 - 1:07
+13. gurgle 1:07 - 1:14
+14. on 1:14 - 1:20
+15. umbrella 1:20 - 1:27
+16. lollipop 1:27 - 1:33
+17. fish 1:33 - 1:41
+18. Bat 1:42 - 1:48
+19. pain 1:48 - 1:54
+20. jam 1:54 - 2:02
+21. goat 2:01 - 2:08
+22. ie 2:08 - 2:15
+23. Bee 2:15 - 2:22
+24. fork 2:23 - 2:30
+25. Buzz 0 - 9
+26. wind 2:38 - 2:43
+27. Strong 2:43 - 2:51
+28. Van 2:52 - 2:59
+29. book 2:58 - 3:05
+30. Moon 3:04 - 3:10
+31. yogurt 3:11 - 3:16
+32. Fox 3:16 - 3:23
+33. chicken 3:23 - 3:30
+34. hush 3:31 - 3:38
+35. This 3:38 - 3:44
+36. three 3:44 - 3:51
+37. Quack 3:50 - 3:56
+38. ouch 3:56 - 4:03
+39. oil 4:04 - 4:11
+40. Que 4:11 - 4:18
+41. Mixer 4:19 - 4:25
+42. arm 4:24 - 4:31

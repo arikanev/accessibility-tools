@@ -19,14 +19,18 @@ def get_sec(time_str):
 
 def main():
     filename, table = parse_options()
-    
     split_length = []
     subtitle = []
 
     with open(table, 'r') as f:
         for line in f.readlines():
-            split_length.append(get_sec(line.split()[6]) - get_sec(line.split()[4]))
-            subtitle.append(" ".join([line.split()[1], line.split()[2], line.split()[3]]))
+            
+            split_length.append(get_sec(line.split()[4]) - get_sec(line.split()[2]))
+            subtitle.append(line.split()[1])
+                        
+            # split_length.append(get_sec(line.split()[6]) - get_sec(line.split()[4]))
+            # subtitle.append(" ".join([line.split()[1], line.split()[2], line.split()[3]]))
+
     p1 = Popen(["ffmpeg", "-i", filename], stdout=PIPE, stderr=PIPE, universal_newlines=True)
     # get p1.stderr as input
     output = Popen(["grep", 'Duration'], stdin=p1.stderr, stdout=PIPE, universal_newlines=True)
