@@ -17,6 +17,7 @@ general downloads
 
 `pip3 install SpeechRecognition`
 `pip3 install gdown`
+`pip3 install pyspellchecker`
 
 # v1 (from youtube video source)
 
