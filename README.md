@@ -34,7 +34,7 @@ general downloads
 
 ## run
 
-`python3 play_some_segs_sr.py -r startrangeint endrangeint -tr -t`
+`python3 play_some_segs.py -r startrangeint endrangeint -tr -t`
 
 ## run (speech recognition version)
 
