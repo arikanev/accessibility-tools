@@ -10,7 +10,7 @@ from tkinter import simpledialog
 from tkinter import *
 
 class MyDialog(simpledialog.Dialog):
-    
+
     def body(self, master):
         self.geometry("800x600")
         tk.Label(master, text="What did Sara just say?").grid(row=0)
@@ -25,7 +25,7 @@ class MyDialog(simpledialog.Dialog):
 
 
 def train(vid):
-    
+
     if args.train:
         for i in idxs:
             for n in range(args.numreps):
@@ -34,8 +34,8 @@ def train(vid):
 
 
 def test(vid):
-    
-    spell = SpellChecker()    
+
+    spell = SpellChecker()
 
     for i in idxs:
         subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
@@ -46,10 +46,10 @@ def test(vid):
             print(contents)
 
             misspelled = spell.unknown([inp])
-            
+
             if len(misspelled) > 0:
                 inp = spell.correction(list(misspelled)[0])
-            
+
             if inp.lower() == contents:
                 preds.append(1)
                 cor_words.append(inp)
@@ -60,7 +60,7 @@ def test(vid):
 
 
 def pop_up():
-    
+
     ROOT = tk.Tk()
     ROOT.option_add('*font', 'Helvetica -30')
     Window = Frame(ROOT)
@@ -79,14 +79,14 @@ def pop_up():
 
 
 def score():
-    
+
     with open('{}_{}_{}-{}.log'.format(args.fname, args.vname, args.range[0], args.range[1]), 'w') as f:
         f.write("correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
 
     prev_WER = None
 
     N = 0
-    
+
     if os.path.isfile('running_WER.log'):
         with open('running_WER.log', 'r') as f:
             for line in f.readlines():

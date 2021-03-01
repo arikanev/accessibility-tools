@@ -1,7 +1,7 @@
 import datetime
 import re
 import math
-from optparse import OptionParser
+import argparse
 
 length_regexp = 'Duration: (\d{2}):(\d{2}):(\d{2})\.\d+,'
 re_length = re.compile(length_regexp)
@@ -14,20 +14,21 @@ def get_sec(time_str):
     try:
         m, s= time_str.split(':')
     except:
-        return int(time_str) 
+        return int(time_str)
     return int(m) * 60 + int(s)
 
 def main():
-    filename, table = parse_options()
+    filename, table = parse_args()
+
     split_length = []
     subtitle = []
 
     with open(table, 'r') as f:
         for line in f.readlines():
-            
+
             split_length.append(get_sec(line.split()[4]) - get_sec(line.split()[2]))
             subtitle.append(line.split()[1])
-                        
+
             # split_length.append(get_sec(line.split()[6]) - get_sec(line.split()[4]))
             # subtitle.append(" ".join([line.split()[1], line.split()[2], line.split()[3]]))
 
@@ -46,8 +47,8 @@ def main():
         print("Can't determine video length.")
         raise SystemExit
 
-    split_count = len(split_length)        
-    
+    split_count = len(split_length)
+
     '''
     if split_count == 1:
         print("Video length is less than the target split length.")
@@ -67,34 +68,19 @@ def main():
         f.close()
         cmd = "ffmpeg -i {}-{}.{} -i {} -c copy -c:s mov_text {}-{}-{}.{}".format(pth, n, ext, "{}-seg-{}.srt".format(pth, n), pth, n, "subs", "mp4")
         print("About to run: {}".format(cmd))
-        check_call(shlex.split(cmd), universal_newlines=True)        
+        check_call(shlex.split(cmd), universal_newlines=True)
 
-def parse_options():
-    parser = OptionParser()
+def parse_args():
 
-    parser.add_option("-f", "--file",
-                      dest="filename",
-                      help="file to split, for example sample.avi",
-                      type="string",
-                      action="store"
-    )
+    parser = argparse.ArgumentParser(description='args for vid splitting')
 
-    parser.add_option("-t", "--table",
-                      dest="table",
-                      help="table to use for splitting video into segments",
-                      type="string",
-                      action="store"
-    )
+    parser.add_argument("-f", "--file", help="file to split, for example sample.avi", type=str)
 
-    (options, args) = parser.parse_args()
+    parser.add_argument("-t", "--table", help="table to use for splitting video into segments", type=str)
 
-    if options.filename and options.table:
+    args = parser.parse_args()
 
-        return options.filename, options.table
-
-    else:
-        parser.print_help()
-        raise SystemExit
+    return args.file, args.table
 
 if __name__ == '__main__':
     try:
