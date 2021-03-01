@@ -7,4 +7,4 @@ else
     touch running_WER.log
 fi
 
-python3 play_some_segs.py -r $1 $2 -s -f haptic
+python3 play_some_segs.py -r $1 $2 -s -f $3 -t
