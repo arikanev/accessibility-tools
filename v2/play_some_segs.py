@@ -2,6 +2,7 @@ import argparse
 import os
 from pathlib import Path
 from random import shuffle
+from spellchecker import SpellChecker
 import subprocess, sys
 from sys import platform
 import tkinter as tk
@@ -34,6 +35,8 @@ def train(vid):
 
 def test(vid):
     
+    spell = SpellChecker()    
+
     for i in idxs:
         subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
         ROOT = pop_up()
@@ -41,13 +44,19 @@ def test(vid):
         with open('segments/{}-seg-{}.srt'.format(vid, i)) as f:
             contents = f.readlines()[2].lower()
             print(contents)
-            if inp.lower() in contents:
+
+            misspelled = spell.unknown([inp])
+            
+            if len(misspelled) > 0:
+                inp = spell.correction(list(misspelled)[0])
+            
+            if inp.lower() == contents:
                 preds.append(1)
                 cor_words.append(inp)
             else:
                 preds.append(0)
                 inc_words.append("incorrect: {} | correct: {}".format(inp, contents))
-    score()    
+    score()
 
 
 def pop_up():
@@ -95,7 +104,7 @@ def score():
 
 
     with open('{}_summary.log'.format(args.fname), 'a') as f:
-        f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance WER: {}\nrunning WER: {}".format(args.fname, args.vname ,args.range[0], args.range[1], cor_words, inc_words, instance_WER, running_WER))
+        f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance WER: {}\nrunning WER: {}".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words, instance_WER, running_WER))
 
     print(preds)
 
