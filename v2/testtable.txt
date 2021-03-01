@@ -1,2 +1,0 @@
-1. S S Snake 0 - 6
-2. A A Ant   6 - 12
