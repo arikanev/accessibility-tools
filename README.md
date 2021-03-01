@@ -42,7 +42,7 @@ general downloads
 
 # Future Steps!
 
-- editing user inputs in case of typos
+- change end range to be inclusive
 
 - Lets get youtube sourcing from first version (pytube lib), interfacing with the code in the second version, for increased funcitionality of second version. 
   - Can simply add youtube link to CLI args embedded in bash script, and add arg for youtube link in v2/split_vid.py. The code for downloading youtube vid is in v1/rand_seg.py
