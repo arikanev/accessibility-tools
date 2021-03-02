@@ -5,6 +5,7 @@ from random import shuffle
 from spellchecker import SpellChecker
 import subprocess, sys
 from sys import platform
+import time
 import tkinter as tk
 from tkinter import simpledialog
 from tkinter import *
@@ -30,7 +31,9 @@ def train(vid, mod_tr=False):
         for i in idxs:
             for n in range(args.numreps):
                 subprocess.call(["mpv", '--fs'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
+                time.sleep(.2)
                 subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
+                time.sleep(.2)
     else:
         for i in idxs:
             for n in range(args.numreps):
