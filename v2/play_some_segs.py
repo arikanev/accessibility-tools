@@ -166,6 +166,9 @@ inc_words = []
 if args.shuffle:
     shuffle(idxs)
 
+if type(args.numreps) == list:
+    args.numreps = args.numreps[0]
+
 vids = []
 
 for file in os.listdir("./"):
