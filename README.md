@@ -42,6 +42,8 @@ general downloads
 
 # Future Steps!
 
+- Change WER to accuracy.
+
 - change end range to be inclusive
 
 - Lets get youtube sourcing from first version (pytube lib), interfacing with the code in the second version, for increased funcitionality of second version. 
@@ -56,6 +58,6 @@ general downloads
 
 - add speech rec as alternative option to text boxes, argparse
 
--  Add repacement for shuffle in test
+- Add repacement for shuffle in test
 
 # - separate accessibility tool project: TooLoud interface of some sort. We want it on phones or haptics.

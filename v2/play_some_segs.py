@@ -24,13 +24,16 @@ class MyDialog(simpledialog.Dialog):
         self.result = first
 
 
-def train(vid):
+def train(vid, mod_tr=False):
 
-    if args.train:
+    if mod_tr:
         for i in idxs:
-            for n in range(args.numreps[0]):
-                segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
-        subprocess.call(["mpv", '--fs'] + segs)
+            subprocess.call(["mpv", '--fs'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
+            subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
+    for i in idx:
+	for n in range(args.numreps[0]):
+            segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
+    subprocess.call(["mpv", '--fs'] + segs)
 
 
 def test(vid):
@@ -123,11 +126,13 @@ def score():
 parser = argparse.ArgumentParser(description='args for playing phoneme segments')
 parser.add_argument('--range', '-r', type=int, nargs=2, help='start and end integer range of videos to select. In form start end')
 parser.add_argument('--train', '-tr', action='store_true', help='enables training mode')
+parser.add_argument('--trainm', '-trm', action='store_true', help='enables modified training mode')
 parser.add_argument('--test', '-t', action='store_true', help='enables testing mode')
 parser.add_argument('--numreps', '-nr', type=int, nargs=1, default=1, help='number of repetitions of phonemes during training')
 parser.add_argument('--shuffle', '-s', action='store_true', help='shuffles videos randomly')
 parser.add_argument('--vname', '-v', type=str, default="all", help='name heading of video file')
 parser.add_argument('--fname', '-f', type=str, default="haptic", help='name heading of results logfile')
+
 
 args = parser.parse_args()
 
@@ -152,17 +157,17 @@ for file in os.listdir("./"):
 if args.vname == "all":
     for vid in vids:
         if args.train and args.test:
-            train(vid)
+            train(vid, mod_tr=args.trainm)
             test(vid)
         elif args.train:
-            train(vid)
+            train(vid, mod_tr=args.trainm)
         elif args.test:
             test(vid)
 else:
     if args.train and args.test:
-        train(args.vname)
+        train(args.vname, mod_tr=args.trainm)
         test(args.vname)
     elif args.train:
-        train(args.vname)
+        train(args.vname, mod_tr=args.trainm)
     elif args.test:
         test(args.vname)
