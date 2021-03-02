@@ -28,12 +28,26 @@ class MyDialog(simpledialog.Dialog):
 def train(vid, mod_tr=False):
 
     if mod_tr:
+
         for i in idxs:
             for n in range(args.numreps):
+                segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
+                segs.append('--{')
+                segs.append('--sid=no')
+                segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
+                segs.append('--}')
+        subprocess.call(["mpv", '--fs'] + segs)
+
+        '''
+        for i in idxs:
+            for n in range(args.numreps):
+
                 subprocess.call(["mpv", '--fs'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
                 time.sleep(.2)
                 subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
                 time.sleep(.2)
+        '''
+
     else:
         for i in idxs:
             for n in range(args.numreps):
@@ -102,7 +116,6 @@ def score():
                 N += 1
     else:
         Path('running_WER.log').touch()
-
     instance_WER = len([i for i in preds if i == 1]) / len(preds)
 
     if prev_WER is not None:
