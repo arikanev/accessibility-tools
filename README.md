@@ -56,4 +56,6 @@ general downloads
 
 - add speech rec as alternative option to text boxes, argparse
 
+-  Add repacement for shuffle in test
+
 # - separate accessibility tool project: TooLoud interface of some sort. We want it on phones or haptics.
