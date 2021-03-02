@@ -28,12 +28,12 @@ def train(vid, mod_tr=False):
 
     if mod_tr:
         for i in idxs:
-            for n in range(args.numreps[0]):
+            for n in range(args.numreps):
                 subprocess.call(["mpv", '--fs'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
                 subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
     else:
-        for i in idx:
-            for n in range(args.numreps[0]):
+        for i in idxs:
+            for n in range(args.numreps):
                 segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
         subprocess.call(["mpv", '--fs'] + segs)
 
