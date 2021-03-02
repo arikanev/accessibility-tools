@@ -63,12 +63,14 @@ def main():
             format(filename, split_start, split_length[n], pth, n, ext)
         print("About to run: {}".format(cmd))
         check_call(shlex.split(cmd), universal_newlines=True)
-        f = open("{}-seg-{}.srt".format(pth, n), "w")
-        f.write('{}\n{}\n{}'.format(1, str(datetime.timedelta(milliseconds=0)) + ",000" + " --> " + str(datetime.timedelta(milliseconds=split_length[n])) + ",000" , subtitle[n]))
-        f.close()
-        cmd = "ffmpeg -i {}-{}.{} -i {} -c copy -c:s mov_text {}-{}-{}.{}".format(pth, n, ext, "{}-seg-{}.srt".format(pth, n), pth, n, "subs", "mp4")
-        print("About to run: {}".format(cmd))
-        check_call(shlex.split(cmd), universal_newlines=True)
+
+        if subtitle[n] != "START":
+            f = open("{}-seg-{}.srt".format(pth, n), "w")
+            f.write('{}\n{}\n{}'.format(1, str(datetime.timedelta(milliseconds=0)) + ",000" + " --> " + str(datetime.timedelta(milliseconds=split_length[n])) + ",000" , subtitle[n]))
+            f.close()
+            cmd = "ffmpeg -i {}-{}.{} -i {} -c copy -c:s mov_text {}-{}-{}.{}".format(pth, n, ext, "{}-seg-{}.srt".format(pth, n), pth, n, "subs", "mp4")
+            print("About to run: {}".format(cmd))
+            check_call(shlex.split(cmd), universal_newlines=True)
 
 def parse_args():
 

@@ -16,6 +16,7 @@ fi
 mkdir segments
 
 
-python3 split_vid.py -f IMG_4654.MOV -t vibrotablecp.txt
+python3 create_segs.py -f IMG_4654.MOV -t vibrotablecp.txt
 
-python3 split_vid.py -f vid.MOV -t vibrotablecp_2.txt
+python3 create_segs.py -f vid.MOV -t vibrotablecp_2.txt
+
