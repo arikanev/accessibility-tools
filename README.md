@@ -52,7 +52,7 @@ general downloads
 - Display speech recognition interface (basically make it easier to capture user speech at correct moments) in dialog/popup boxes
   - dig into SpeechRecognition api, eventually use some sort of more customizable alternative, parratron, live transcribe, something for HOH speech to be understood
 
-- Maybe not feasible: MPV player should remain open as popup for user input appears after each vid. Try increasing CPU threads to 2 and/or running parallel process.
+- Maybe not feasible/maybe not better than existing testing state: MPV player should remain open as popup for user input appears after each vid. Try increasing CPU threads to 2 and/or running parallel process.
 
 - Haptic isolation training tool - decrease brightness over time of videos.
 
