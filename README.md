@@ -42,9 +42,10 @@ general downloads
 
 # Future Steps!
 
-- Change WER to accuracy.
-
 - change end range to be inclusive
+
+- make possible to test or train sellective videos rather than via range. For example to run 1st and 5th video segments, or videos with idexes like
+{2,5,7,9}  
 
 - Lets get youtube sourcing from first version (pytube lib), interfacing with the code in the second version, for increased funcitionality of second version. 
   - Can simply add youtube link to CLI args embedded in bash script, and add arg for youtube link in v2/split_vid.py. The code for downloading youtube vid is in v1/rand_seg.py
@@ -52,12 +53,12 @@ general downloads
 - Display speech recognition interface (basically make it easier to capture user speech at correct moments) in dialog/popup boxes
   - dig into SpeechRecognition api, eventually use some sort of more customizable alternative, parratron, live transcribe, something for HOH speech to be understood
 
-- Maybe not feasible/maybe not better than existing testing state: MPV player should remain open as popup for user input appears after each vid. Try increasing CPU threads to 2 and/or running parallel process.
+- MPV player should remain open as popup for user input appears after each vid. Try increasing CPU threads to 2 and/or running parallel process.
 
 - Haptic isolation training tool - decrease brightness over time of videos.
 
 - add speech rec as alternative option to text boxes, argparse
 
-- Add repacement for shuffle in test
+-  Add repacement for shuffle in test
 
 # - separate accessibility tool project: TooLoud interface of some sort. We want it on phones or haptics.
