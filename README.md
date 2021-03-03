@@ -60,6 +60,4 @@ general downloads
 
 - Add repacement for shuffle in test
 
-- add removal of video segments with "START" captioning
-
 # - separate accessibility tool project: TooLoud interface of some sort. We want it on phones or haptics.
