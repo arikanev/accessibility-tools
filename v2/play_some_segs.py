@@ -60,24 +60,31 @@ def test(vid):
     spell = SpellChecker()
 
     for i in idxs:
-        subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
-        ROOT = pop_up()
-        inp = MyDialog(ROOT, "Enter word guess for segment {}: \n".format(i)).result
-        with open('segments/{}-seg-{}.srt'.format(vid, i)) as f:
-            contents = f.readlines()[2].lower()
-            print(contents)
 
-            misspelled = spell.unknown([inp])
+        try:
 
-            if len(misspelled) > 0:
-                inp = spell.correction(list(misspelled)[0])
+            subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
+            ROOT = pop_up()
+            inp = MyDialog(ROOT, "Enter word guess for segment {}: \n".format(i)).result
+            with open('segments/{}-seg-{}.srt'.format(vid, i)) as f:
+                contents = f.readlines()[2].lower()
+                print(contents)
 
-            if inp.lower() == contents:
-                preds.append(1)
-                cor_words.append(inp)
-            else:
-                preds.append(0)
-                inc_words.append("incorrect: {} | correct: {}".format(inp, contents))
+                misspelled = spell.unknown([inp])
+
+                if len(misspelled) > 0:
+                    inp = spell.correction(list(misspelled)[0])
+
+                if inp.lower() == contents:
+                    preds.append(1)
+                    cor_words.append(inp)
+                else:
+                    preds.append(0)
+                    inc_words.append("incorrect: {} | correct: {}".format(inp, contents))
+        except FileNotFoundError:
+
+            continue
+
     score()
 
 
@@ -142,7 +149,7 @@ def score():
 
 
 parser = argparse.ArgumentParser(description='args for playing phoneme segments')
-parser.add_argument('--range', '-r', type=int, nargs=2, help='start and end integer range of videos to select. In form start end')
+parser.add_argument('--range', '-r', type=int, nargs=2, default=[0, 10], help='start and end integer range of videos to select. In form start end')
 parser.add_argument('--train', '-tr', action='store_true', help='enables training mode')
 parser.add_argument('--trainm', '-trm', action='store_true', help='enables modified training mode')
 parser.add_argument('--test', '-t', action='store_true', help='enables testing mode')
