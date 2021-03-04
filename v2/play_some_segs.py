@@ -157,13 +157,21 @@ parser.add_argument('--numreps', '-nr', type=int, nargs=1, default=1, help='numb
 parser.add_argument('--shuffle', '-s', action='store_true', help='shuffles videos randomly')
 parser.add_argument('--vname', '-v', type=str, default="all", help='name heading of video file')
 parser.add_argument('--fname', '-f', type=str, default="haptic", help='name heading of results logfile')
-
+parser.add_argument('--idxs', '-i', type=int, nargs='+', help='indices of specific video segments to select. If used, overrides range argument')
 
 args = parser.parse_args()
 
 idxs = []
-for i in range(args.range[0], args.range[1]):
-    idxs.append(i)
+
+
+if args.idxs:
+    for i in args.idxs:
+        idxs.append(i)
+
+else:
+    for i in range(args.range[0], args.range[1]):
+        idxs.append(i)
+
 
 segs = []
 preds = []
