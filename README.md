@@ -44,9 +44,6 @@ general downloads
 
 - change end range to be inclusive
 
-- make possible to test or train sellective videos rather than via range. For example to run 1st and 5th video segments, or videos with idexes like
-{2,5,7,9}  
-
 - Lets get youtube sourcing from first version (pytube lib), interfacing with the code in the second version, for increased funcitionality of second version. 
   - Can simply add youtube link to CLI args embedded in bash script, and add arg for youtube link in v2/split_vid.py. The code for downloading youtube vid is in v1/rand_seg.py
 
