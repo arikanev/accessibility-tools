@@ -57,8 +57,11 @@ def main():
 
     for n in range(split_count):
         split_start = sum(split_length[:n])
+
+        print(filename.rsplit(".", 1))
+
         pth, ext = filename.rsplit(".", 1)
-        pth = "segments/" + pth
+        pth = "segments/" + pth.strip("./vids/")
         cmd = "ffmpeg -i {} -vcodec copy  -strict -2 -ss {} -t {} {}-{}.{}".\
             format(filename, split_start, split_length[n], pth, n, ext)
         print("About to run: {}".format(cmd))

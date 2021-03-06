@@ -9,36 +9,33 @@ declare -a vids=([1]="https://drive.google.com/uc?id=1_YWTi4gTOS6e5AKuGXWopAMUPD
 
 for vid in "${!vids[@]}"; do 
 
-    if test -f $vid".MOV"; then
+    if test -f ./vids/$vid".MOV"; then
         
         echo $vid".MOV exists, skipping download."
 
     else
         
-        gdown "${vids[$vid]}" -O $vid".MOV"
-    
+        gdown "${vids[$vid]}"
+        
+        find . -maxdepth 1 -name '*.MOV' -exec echo $vid {} >> tables/reference.table \;
+        
+        find . -maxdepth 1 -name '*.MOV' -exec mv {} ./vids/$vid".MOV" \;
+
     fi
 
 done
 
 
-#if test -f "IMG_4654.MOV"; then
-#    echo "IMG_4654.MOV exists, skipping download."
-#else
-#    gdown https://drive.google.com/uc?id=1_YWTi4gTOS6e5AKuGXWopAMUPDFU3IRl
-#fi
-
-#if test -f "vid.MOV"; then
-#    echo "vid.MOV exists, skipping download."
-#else
-#    gdown https://drive.google.com/uc?id=13H07C201T7gAYH-4UTXd-6uN7yDrHhiU
-#fi
-
-
 mkdir segments
 
 
-python3 create_segs.py -f IMG_4654.MOV -t vibrotablecp.txt
+python3 create_tables.py
 
-python3 create_segs.py -f vid.MOV -t vibrotablecp_2.txt
+declare -a vid2table=([1]=1 [2]=2 [3]=3 [4]=4 [5]=5 [6]=6)
+
+for vt in "${!vid2table[@]}"; do
+
+    python3 create_segs.py -f ./vids/$vt".MOV" -t ./tables/${vid2table[$vt]}".table"
+
+done
 
