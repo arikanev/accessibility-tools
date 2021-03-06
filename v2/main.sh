@@ -9,13 +9,13 @@ declare -a vids=([1]="https://drive.google.com/uc?id=1_YWTi4gTOS6e5AKuGXWopAMUPD
 
 for vid in "${!vids[@]}"; do 
 
-    if test -f vid+".MOV"; then
+    if test -f $vid".MOV"; then
         
-        echo vid+".MOV exists, skipping download."
+        echo $vid".MOV exists, skipping download."
 
     else
         
-        gdown "${vids[$vid]}"
+        gdown "${vids[$vid]}" -O $vid".MOV"
     
     fi
 
