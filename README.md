@@ -42,8 +42,6 @@ general downloads
 
 # Future Steps!
 
-- change end range to be inclusive
-
 - Lets get youtube sourcing from first version (pytube lib), interfacing with the code in the second version, for increased funcitionality of second version. 
   - Can simply add youtube link to CLI args embedded in bash script, and add arg for youtube link in v2/split_vid.py. The code for downloading youtube vid is in v1/rand_seg.py
 
@@ -55,7 +53,5 @@ general downloads
 - Haptic isolation training tool - decrease brightness over time of videos.
 
 - add speech rec as alternative option to text boxes, argparse
-
--  Add repacement for shuffle in test
 
 # - separate accessibility tool project: TooLoud interface of some sort. We want it on phones or haptics.
