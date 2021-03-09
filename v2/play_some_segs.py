@@ -186,7 +186,7 @@ if type(args.numreps) == list:
 
 vids = []
 
-for file in os.listdir("./"):
+for file in os.listdir("./vids/"):
     if file.endswith(".MOV"):
         vids.append(file.strip(".MOV"))
 
