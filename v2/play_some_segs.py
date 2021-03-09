@@ -65,7 +65,7 @@ def test(vid):
 
             subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
             ROOT = pop_up()
-            inp = MyDialog(ROOT, "Enter word guess for segment {}: \n".format(i)).result
+            inp = MyDialog(ROOT, "Enter word guess for segment: \n").result
             with open('segments/{}-seg-{}.srt'.format(vid, i)) as f:
                 contents = f.readlines()[2].lower()
                 print(contents)
