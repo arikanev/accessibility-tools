@@ -14,7 +14,7 @@ class MyDialog(simpledialog.Dialog):
 
     def body(self, master):
         self.geometry("800x600")
-        tk.Label(master, text="What did Sara just say?").grid(row=0)
+        tk.Label(master, text="What did Awesome Person just say?").grid(row=0)
 
         self.e1 = tk.Entry(master)
         self.e1.grid(row=0, column=1)
@@ -112,36 +112,36 @@ def score():
     with open('{}_{}_{}-{}.log'.format(args.fname, args.vname, args.range[0], args.range[1]), 'w') as f:
         f.write("correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
 
-    prev_WER = None
+    prev_acc = None
 
     N = 0
 
-    if os.path.isfile('running_WER.log'):
-        with open('running_WER.log', 'r') as f:
+    if os.path.isfile('running_acc.log'):
+        with open('running_acc.log', 'r') as f:
             for line in f.readlines():
-                prev_WER = float(line)
+                prev_acc = float(line)
                 N += 1
     else:
-        Path('running_WER.log').touch()
-    instance_WER = len([i for i in preds if i == 1]) / len(preds)
+        Path('running_acc.log').touch()
+    instance_acc = len([i for i in preds if i == 1]) / len(preds)
 
-    if prev_WER is not None:
-        running_WER = ((prev_WER * N) + instance_WER) / (N + 1)
+    if prev_acc is not None:
+        running_acc = ((prev_acc * N) + instance_acc) / (N + 1)
     else:
-        running_WER = instance_WER
+        running_acc = instance_acc
 
 
     with open('{}_summary.log'.format(args.fname), 'a') as f:
-        f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance WER: {}\nrunning WER: {}".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words, instance_WER, running_WER))
+        f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance acc: {}\nrunning acc: {}".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words, instance_WER, running_WER))
 
     print(preds)
 
     # calculate and print WER
-    print("WER (% of correctly guessed words in range {} - {}): {}".format(args.range[0], args.range[1], instance_WER))
-    print("Running WER: {}".format(running_WER))
+    print("acc (% of correctly guessed words in range {} - {}): {}".format(args.range[0], args.range[1], instance_acc))
+    print("Running acc: {}".format(running_acc))
 
-    with open('running_WER.log', 'a') as f:
-        f.write(str(running_WER) + '\n')
+    with open('running_acc.log', 'a') as f:
+        f.write(str(running_acc) + '\n')
 
     print("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words))
 
