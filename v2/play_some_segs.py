@@ -93,7 +93,7 @@ class MyDialog(simpledialog.Dialog):
         box.pack()
 
 
-def train(vid, mod_tr=False):
+def train(vid, mod_tr=False, preds=[], segs=[]):
 
     if mod_tr:
 
@@ -104,8 +104,15 @@ def train(vid, mod_tr=False):
                 segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
                 segs.append('--}')
                 segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
-        subprocess.call(["mpv", '--fs'] + segs)
-
+                subprocess.call(["mpv", '--fs'] + segs)
+                inp = input("Please enter 'c' if your guess was correct, 'w' if it was wrong: ")
+                if inp == 'c':
+                    preds.append(1)
+                elif inp == 'w':
+                    preds.append(0)
+                segs = []
+        score(trainm=True)
+        preds = []
         '''
         for i in idxs:
             for n in range(args.numreps):
@@ -123,7 +130,7 @@ def train(vid, mod_tr=False):
         subprocess.call(["mpv", '--fs'] + segs)
 
 
-def test(vid, idxs, numreps):
+def test(vid, idxs, numreps, preds=[]):
 
     for i in idxs:
 
@@ -189,43 +196,54 @@ def pop_up():
     return ROOT
 
 
-def score():
+def score(trainm=False):
 
-    with open('{}_{}_{}-{}.log'.format(args.fname, args.vname, args.range[0], args.range[1]), 'w') as f:
-        f.write("correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
+    if trainm:
 
-    prev_acc = None
+        acc = len([i for i in preds if i == 1]) / len(preds)
 
-    N = 0
+        print("acc for modified training: {}".format(acc))
 
-    if os.path.isfile('running_acc.log'):
-        with open('running_acc.log', 'r') as f:
-            for line in f.readlines():
-                prev_acc = float(line)
-                N += 1
+        with open('modified_training_{}_{}_{}-{}.log'.format(args.fname, args.vname, args.range[0], args.range[1]), 'w') as f:
+            f.write("acc: {}".format(acc))
+
     else:
-        Path('running_acc.log').touch()
-    instance_acc = len([i for i in preds if i == 1]) / len(preds)
 
-    if prev_acc is not None:
-        running_acc = ((prev_acc * N) + instance_acc) / (N + 1)
-    else:
-        running_acc = instance_acc
+        with open('{}_{}_{}-{}.log'.format(args.fname, args.vname, args.range[0], args.range[1]), 'w') as f:
+            f.write("correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
+
+        prev_acc = None
+
+        N = 0
+
+        if os.path.isfile('running_acc.log'):
+            with open('running_acc.log', 'r') as f:
+                for line in f.readlines():
+                    prev_acc = float(line)
+                    N += 1
+        else:
+            Path('running_acc.log').touch()
+        instance_acc = len([i for i in preds if i == 1]) / len(preds)
+
+        if prev_acc is not None:
+            running_acc = ((prev_acc * N) + instance_acc) / (N + 1)
+        else:
+            running_acc = instance_acc
 
 
-    with open('{}_summary.log'.format(args.fname), 'a') as f:
-        f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance acc: {}\nrunning acc: {}".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words, instance_acc, running_acc))
+        with open('{}_summary.log'.format(args.fname), 'a') as f:
+            f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance acc: {}\nrunning acc: {}".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words, instance_acc, running_acc))
 
-    print(preds)
+        print(preds)
 
-    # calculate and print WER
-    print("acc (% of correctly guessed words in range {} - {}): {}".format(args.range[0], args.range[1], instance_acc))
-    print("Running acc: {}".format(running_acc))
+        # calculate and print WER
+        print("acc (% of correctly guessed words in range {} - {}): {}".format(args.range[0], args.range[1], instance_acc))
+        print("Running acc: {}".format(running_acc))
 
-    with open('running_acc.log', 'a') as f:
-        f.write(str(running_acc) + '\n')
+        with open('running_acc.log', 'a') as f:
+            f.write(str(running_acc) + '\n')
 
-    print("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words))
+        print("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words))
 
 
 
@@ -276,17 +294,17 @@ for file in os.listdir("./vids/"):
 if args.vname == "all":
     for vid in vids:
         if args.train and args.test:
-            train(vid, mod_tr=args.trainm)
-            test(vid, idxs, numreps)
+            train(vid, args.trainm, preds)
+            test(vid, idxs, numreps, preds)
         elif args.train:
-            train(vid, mod_tr=args.trainm)
+            train(vid, args.trainm, preds)
         elif args.test:
-            test(vid, idxs, numreps)
+            test(vid, idxs, numreps, preds)
 else:
     if args.train and args.test:
-        train(args.vname, mod_tr=args.trainm)
-        test(args.vname, idxs, numreps)
+        train(args.vname, args.trainm, preds)
+        test(args.vname, idxs, numreps, preds)
     elif args.train:
-        train(args.vname, mod_tr=args.trainm)
+        train(args.vname, args.trainm, preds)
     elif args.test:
-        test(args.vname, idxs, numreps)
+        test(args.vname, idxs, numreps, preds)
