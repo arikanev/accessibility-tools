@@ -13,16 +13,49 @@ from tkinter import *
 class MyDialog(simpledialog.Dialog):
 
     def body(self, master):
-        self.geometry("800x600")
-        tk.Label(master, text="What did Awesome Person just say?").grid(row=0)
+        self.geometry("800x800")
+        tk.Label(master, text="What did speaker just say?").grid(row=0)
 
         self.e1 = tk.Entry(master)
         self.e1.grid(row=0, column=1)
-        return self.e1 # initial focus
+
+        return self.e1
 
     def apply(self):
         first = self.e1.get()
-        self.result = first
+
+        if len(first) == 0:
+            self.skip()
+        else:
+            self.result = first
+
+    def skip(self, event=None):
+        self.result = "user-skip"
+        self.destroy()
+
+    def repeat(self, event=None):
+        self.result= "user-repeat"
+        self.destroy()
+
+    def buttonbox(self):
+        '''add standard button box.
+        override if you do not want the standard buttons
+        '''
+
+        box = Frame(self)
+
+        w = Button(box, text="OK (enter)", width=11, command=self.ok, default=ACTIVE)
+        w.pack(side=LEFT, padx=5, pady=5)
+        w = Button(box, text="Repeat (space)", width=15, command=self.repeat)
+        w.pack(side=LEFT, padx=5, pady=5)
+        w = Button(box, text="Skip (esc)", width=11, command=self.skip)
+        w.pack(side=LEFT, padx=5, pady=5)
+
+        self.bind("<Return>", self.ok)
+        self.bind("<space>", self.repeat)
+        self.bind("<Escape>", self.skip)
+
+        box.pack()
 
 
 def train(vid, mod_tr=False):
@@ -55,7 +88,7 @@ def train(vid, mod_tr=False):
         subprocess.call(["mpv", '--fs'] + segs)
 
 
-def test(vid):
+def test(vid, idxs, numreps):
 
     spell = SpellChecker()
 
@@ -66,21 +99,44 @@ def test(vid):
             subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
             ROOT = pop_up()
             inp = MyDialog(ROOT, "Enter word guess for segment: \n").result
-            with open('segments/{}-seg-{}.srt'.format(vid, i)) as f:
-                contents = f.readlines()[2].lower()
-                print(contents)
 
-                misspelled = spell.unknown([inp])
+            print(inp)
 
-                if len(misspelled) > 0:
-                    inp = spell.correction(list(misspelled)[0])
+            while inp == "user-repeat":
+                numreps += 1
+                subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
+                ROOT = pop_up()
+                inp = MyDialog(ROOT, "Enter word guess for segment: \n").result
 
-                if inp.lower() == contents:
-                    preds.append(1)
-                    cor_words.append(inp)
-                else:
-                    preds.append(0)
-                    inc_words.append("incorrect: {} | correct: {}".format(inp, contents))
+            if inp == "user-skip":
+               preds.append(0)
+               with open('segments/{}-seg-{}.srt'.format(vid, i)) as f:
+                   contents = f.readlines()[2].lower()
+                   print(contents)
+
+               inc_words.append("incorrect: {} | correct: {} | num reps: {}".format(inp, contents, numreps))
+               numreps = 0
+
+            else:
+               with open('segments/{}-seg-{}.srt'.format(vid, i)) as f:
+                   contents = f.readlines()[2].lower()
+                   print(contents)
+
+                   if len(inp) > 0:
+
+                       misspelled = spell.unknown([inp])
+
+                       if len(misspelled) > 0:
+                           inp = spell.correction(list(misspelled)[0])
+
+                   if inp.lower() == contents:
+                       preds.append(1)
+                       cor_words.append("{} | num reps: {}".format(inp, numreps))
+                   else:
+                       preds.append(0)
+                       inc_words.append("incorrect: {} | correct: {} | num reps: {}".format(inp, contents, numreps))
+               numreps = 0
+
         except FileNotFoundError:
 
             continue
@@ -132,7 +188,7 @@ def score():
 
 
     with open('{}_summary.log'.format(args.fname), 'a') as f:
-        f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance acc: {}\nrunning acc: {}".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words, instance_WER, running_WER))
+        f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance acc: {}\nrunning acc: {}".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words, instance_acc, running_acc))
 
     print(preds)
 
@@ -167,12 +223,13 @@ idxs = []
 if args.idxs:
     for i in args.idxs:
         idxs.append(i)
+    args.range[0], args.range[1] = idxs[0], idxs[len(idxs)-1]
 
 else:
     for i in range(args.range[0], args.range[1]):
         idxs.append(i)
 
-
+numreps = 0
 segs = []
 preds = []
 cor_words = []
@@ -194,16 +251,16 @@ if args.vname == "all":
     for vid in vids:
         if args.train and args.test:
             train(vid, mod_tr=args.trainm)
-            test(vid)
+            test(vid, idxs, numreps)
         elif args.train:
             train(vid, mod_tr=args.trainm)
         elif args.test:
-            test(vid)
+            test(vid, idxs, numreps)
 else:
     if args.train and args.test:
         train(args.vname, mod_tr=args.trainm)
-        test(args.vname)
+        test(args.vname, idxs, numreps)
     elif args.train:
         train(args.vname, mod_tr=args.trainm)
     elif args.test:
-        test(args.vname)
+        test(args.vname, idxs, numreps)
