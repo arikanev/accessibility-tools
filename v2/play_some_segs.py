@@ -12,6 +12,11 @@ from tkinter import *
 
 class MyDialog(simpledialog.Dialog):
 
+    spell = SpellChecker()
+    ok_button = None
+    repeat_button = None
+    skip_button = None
+
     def body(self, master):
         self.geometry("800x800")
         tk.Label(master, text="What did speaker just say?").grid(row=0)
@@ -23,11 +28,25 @@ class MyDialog(simpledialog.Dialog):
 
     def apply(self):
         first = self.e1.get()
-
         if len(first) == 0:
             self.skip()
         else:
             self.result = first
+
+    def ok(self, event=None):
+        if not self.validate():
+            self.initial_focus.focus_set() # put focus back
+            return
+
+
+        self.withdraw()
+        self.update_idletasks()
+
+        try:
+            self.apply()
+        finally:
+            self.cancel()
+
 
     def skip(self, event=None):
         self.result = "user-skip"
@@ -37,6 +56,22 @@ class MyDialog(simpledialog.Dialog):
         self.result= "user-repeat"
         self.destroy()
 
+    def validate(self):
+        init_inp = self.e1.get()
+
+        if len(init_inp) > 0:
+            self.e1.delete(0, tk.END)
+            inp = self.spell.correction(init_inp)
+            self.e1.insert(0, inp)
+
+            if inp == init_inp:
+                return 1
+
+            elif inp != init_inp:
+                return 0
+
+        return 1
+
     def buttonbox(self):
         '''add standard button box.
         override if you do not want the standard buttons
@@ -44,12 +79,12 @@ class MyDialog(simpledialog.Dialog):
 
         box = Frame(self)
 
-        w = Button(box, text="OK (enter)", width=11, command=self.ok, default=ACTIVE)
-        w.pack(side=LEFT, padx=5, pady=5)
-        w = Button(box, text="Repeat (space)", width=15, command=self.repeat)
-        w.pack(side=LEFT, padx=5, pady=5)
-        w = Button(box, text="Skip (esc)", width=11, command=self.skip)
-        w.pack(side=LEFT, padx=5, pady=5)
+        self.ok_button = Button(box, text="OK (enter)", width=11, command=self.ok, default=ACTIVE)
+        self.ok_button.pack(side=LEFT, padx=5, pady=5)
+        self.repeat_button = Button(box, text="Repeat (space)", width=15, command=self.repeat)
+        self.repeat_button.pack(side=LEFT, padx=5, pady=5)
+        self.skip_button = Button(box, text="Skip (esc)", width=11, command=self.skip)
+        self.skip_button.pack(side=LEFT, padx=5, pady=5)
 
         self.bind("<Return>", self.ok)
         self.bind("<space>", self.repeat)
@@ -90,8 +125,6 @@ def train(vid, mod_tr=False):
 
 def test(vid, idxs, numreps):
 
-    spell = SpellChecker()
-
     for i in idxs:
 
         try:
@@ -121,13 +154,6 @@ def test(vid, idxs, numreps):
                with open('segments/{}-seg-{}.srt'.format(vid, i)) as f:
                    contents = f.readlines()[2].lower()
                    print(contents)
-
-                   if len(inp) > 0:
-
-                       misspelled = spell.unknown([inp])
-
-                       if len(misspelled) > 0:
-                           inp = spell.correction(list(misspelled)[0])
 
                    if inp.lower() == contents:
                        preds.append(1)
