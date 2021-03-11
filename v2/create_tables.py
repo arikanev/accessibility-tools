@@ -20,8 +20,7 @@ for root, dir, files in os.walk('./vids/'):
             vids.append(vid)
 
 
-W22 = {1:1, 2:3, 3:5, 4:7}
-# 1->1 2->3 3->5 4->7
+W22 = {3:7, 4:5, 5:3, 6:1}
 
 for vid in vids:
 
@@ -33,9 +32,9 @@ for vid in vids:
 
                 for l, i in W22.items():
 
-                    if str(l) in rline.split('./')[1].replace("W22", ""):
+                    if str(l) in rline.split('./')[1]:
 
-                        print(l, rline.split('./')[1].replace("W22", ""))
+                        print(l, rline.split('./')[1])
 
                         with open('./tables/W22.table', 'r') as w:
 

@@ -204,44 +204,23 @@ def score(trainm=False):
 
         print("acc for modified training: {}".format(acc))
 
-        with open('modified_training_{}_{}_{}-{}.log'.format(args.fname, args.vname, args.range[0], args.range[1]), 'w') as f:
+        with open('training_{}_{}_{}-{}.txt'.format(args.fname, args.vname, args.range[0], args.range[1]), 'w') as f:
             f.write("acc: {}".format(acc))
 
     else:
 
-        with open('{}_{}_{}-{}.log'.format(args.fname, args.vname, args.range[0], args.range[1]), 'w') as f:
+        with open('{}_{}_{}-{}.txt'.format(args.fname, args.vname, args.range[0], args.range[1]), 'w') as f:
             f.write("correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
 
-        prev_acc = None
+        acc = len([i for i in preds if i == 1]) / len(preds)
 
-        N = 0
-
-        if os.path.isfile('running_acc.log'):
-            with open('running_acc.log', 'r') as f:
-                for line in f.readlines():
-                    prev_acc = float(line)
-                    N += 1
-        else:
-            Path('running_acc.log').touch()
-        instance_acc = len([i for i in preds if i == 1]) / len(preds)
-
-        if prev_acc is not None:
-            running_acc = ((prev_acc * N) + instance_acc) / (N + 1)
-        else:
-            running_acc = instance_acc
-
-
-        with open('{}_summary.log'.format(args.fname), 'a') as f:
-            f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance acc: {}\nrunning acc: {}".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words, instance_acc, running_acc))
+        with open('{}_summary.txt'.format(args.fname), 'a') as f:
+            f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance acc: {}".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words, instance_acc))
 
         print(preds)
 
         # calculate and print WER
         print("acc (% of correctly guessed words in range {} - {}): {}".format(args.range[0], args.range[1], instance_acc))
-        print("Running acc: {}".format(running_acc))
-
-        with open('running_acc.log', 'a') as f:
-            f.write(str(running_acc) + '\n')
 
         print("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words))
 
@@ -258,6 +237,8 @@ parser.add_argument('--shuffle', '-s', action='store_true', help='shuffles video
 parser.add_argument('--vname', '-v', type=str, default="all", help='name heading of video file')
 parser.add_argument('--fname', '-f', type=str, default="haptic", help='name heading of results logfile')
 parser.add_argument('--idxs', '-i', type=int, nargs='+', help='indices of specific video segments to select. If used, overrides range argument')
+parser.add_argument('--vidxs', '-vi', type=str, help='indices of specific video segments to select across all video files specified')
+
 
 args = parser.parse_args()
 
