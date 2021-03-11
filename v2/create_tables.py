@@ -23,7 +23,7 @@ for root, dir, files in os.walk('./vids/'):
             vids.append(vid)
 
 
-W22 = {3:7, 4:5, 5:3, 6:1}
+W22 = {2:1, 3:7, 4:5, 5:3, 6:1}
 
 for vid in vids:
 

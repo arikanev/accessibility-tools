@@ -21,6 +21,8 @@ for vid in "${!vids[@]}"; do
         
         echo $vid".MOV exists, skipping download."
 
+        find ./vids -maxdepth 1 -name $vid'.MOV' -exec echo $vid {} >> tables/reference.table \;
+
     else
         
         gdown "${vids[$vid]}"
@@ -57,7 +59,7 @@ mkdir segments
 
 python3 create_tables.py
 
-declare -a vid2table=([1]=1 [2]=6 [3]=3 [4]=4 [5]=5 [6]=6)
+declare -a vid2table=([1]=1 [2]=2 [3]=3 [4]=4 [5]=5 [6]=6)
 
 for vt in "${!vid2table[@]}"; do
 

@@ -12,10 +12,14 @@ from tkinter import *
 
 class MyDialog(simpledialog.Dialog):
 
-    spell = SpellChecker()
     ok_button = None
     repeat_button = None
     skip_button = None
+
+    def __init__(self, ROOT, text, spell=SpellChecker(language=None), vid=None):
+        self.spell = spell
+        self.spell.word_frequency.load_text_file('./tables/{}.table'.format(vid))
+        super().__init__(ROOT, text)
 
     def body(self, master):
         self.geometry("800x800")
@@ -93,26 +97,40 @@ class MyDialog(simpledialog.Dialog):
         box.pack()
 
 
-def train(vid, mod_tr=False, preds=[], segs=[]):
+def train(vid, mod_tr=False, wc=False, preds=[], segs=[]):
 
     if mod_tr:
 
-        for i in idxs:
-            for n in range(args.numreps):
-                segs.append('--{')
-                segs.append('--sid=no')
-                segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
-                segs.append('--}')
-                segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
-                subprocess.call(["mpv", '--fs'] + segs)
-                inp = input("Please enter 'c' if your guess was correct, 'w' if it was wrong: ")
-                if inp == 'c':
-                    preds.append(1)
-                elif inp == 'w':
-                    preds.append(0)
-                segs = []
-        score(trainm=True)
-        preds = []
+        if wc:
+
+            for i in idxs:
+                for n in range(args.numreps):
+                    segs.append('--{')
+                    segs.append('--sid=no')
+                    segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
+                    segs.append('--}')
+                    segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
+                    subprocess.call(["mpv", '--fs'] + segs)
+                    inp = input("Please enter 'c' if your guess was correct, 'w' if it was wrong: ")
+                    if inp == 'c':
+                       preds.append(1)
+                    elif inp == 'w':
+                       preds.append(0)
+                    segs = []
+            score(trainm=True)
+            preds = []
+
+        else:
+
+            for i in idxs:
+                for n in range(args.numreps):
+                    segs.append('--{')
+                    segs.append('--sid=no')
+                    segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
+                    segs.append('--}')
+                    segs.append('segments/{}-{}-subs.mp4'.format(vid, i))
+            subprocess.call(["mpv", '--fs'] + segs)
+
         '''
         for i in idxs:
             for n in range(args.numreps):
@@ -138,7 +156,7 @@ def test(vid, idxs, numreps, preds=[]):
 
             subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
             ROOT = pop_up()
-            inp = MyDialog(ROOT, "Enter word guess for segment: \n").result
+            inp = MyDialog(ROOT, "Enter word guess for segment: \n", vid=vid).result
 
             print(inp)
 
@@ -146,7 +164,7 @@ def test(vid, idxs, numreps, preds=[]):
                 numreps += 1
                 subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
                 ROOT = pop_up()
-                inp = MyDialog(ROOT, "Enter word guess for segment: \n").result
+                inp = MyDialog(ROOT, "Enter word guess for segment: \n", vid=vid).result
 
             if inp == "user-skip":
                preds.append(0)
@@ -237,8 +255,9 @@ parser.add_argument('--shuffle', '-s', action='store_true', help='shuffles video
 parser.add_argument('--vname', '-v', type=str, default="all", help='name heading of video file')
 parser.add_argument('--fname', '-f', type=str, default="haptic", help='name heading of results logfile')
 parser.add_argument('--idxs', '-i', type=int, nargs='+', help='indices of specific video segments to select. If used, overrides range argument')
+#TODO finish this one
 parser.add_argument('--vidxs', '-vi', type=str, help='indices of specific video segments to select across all video files specified')
-
+parser.add_argument('--wcor', '-wc', action='store_true', help='modified training mode will include some testing features (warm up)')
 
 args = parser.parse_args()
 
@@ -267,6 +286,7 @@ if type(args.numreps) == list:
     args.numreps = args.numreps[0]
 
 vids = []
+vid = None
 
 for file in os.listdir("./vids/"):
     if file.endswith(".MOV"):
@@ -275,17 +295,17 @@ for file in os.listdir("./vids/"):
 if args.vname == "all":
     for vid in vids:
         if args.train and args.test:
-            train(vid, args.trainm, preds)
+            train(vid, args.trainm, args.wcor, preds)
             test(vid, idxs, numreps, preds)
         elif args.train:
-            train(vid, args.trainm, preds)
+            train(vid, args.trainm, args.wcor, preds)
         elif args.test:
             test(vid, idxs, numreps, preds)
 else:
     if args.train and args.test:
-        train(args.vname, args.trainm, preds)
+        train(args.vname, args.trainm, args.wcor, preds)
         test(args.vname, idxs, numreps, preds)
     elif args.train:
-        train(args.vname, args.trainm, preds)
+        train(args.vname, args.trainm, args.wcor, preds)
     elif args.test:
         test(args.vname, idxs, numreps, preds)
