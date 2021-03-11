@@ -215,12 +215,12 @@ def score(trainm=False):
         acc = len([i for i in preds if i == 1]) / len(preds)
 
         with open('{}_summary.txt'.format(args.fname), 'a') as f:
-            f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\ninstance acc: {}".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words, instance_acc))
+            f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n acc: {}".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words, acc))
 
         print(preds)
 
         # calculate and print WER
-        print("acc (% of correctly guessed words in range {} - {}): {}".format(args.range[0], args.range[1], instance_acc))
+        print("acc (% of correctly guessed words in range {} - {}): {}".format(args.range[0], args.range[1], acc))
 
         print("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words))
 

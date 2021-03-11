@@ -8,6 +8,9 @@ for root, dir, files in os.walk('./tables/'):
 
             tables.append(table.strip(".table"))
 
+if len(tables) == 7:
+
+    exit()
 
 vids = []
 
