@@ -5,7 +5,10 @@ declare -a vids=([1]="https://drive.google.com/uc?id=1kBnA2wt9AmZlSUp223pF2SQ7MA
                  [3]="https://drive.google.com/uc?id=1ayv9-37x6qzAj4J-kty2gKaFSDtK9shm" \
                  [4]="https://drive.google.com/uc?id=15wn7d8MwHINE9APhVQLCm31oJgHvYLoJ" \
                  [5]="https://drive.google.com/uc?id=1ZbkQ-FMgKTmj7eNThpEcE7urXlJOQ3Cy" \
-                 [6]="https://drive.google.com/uc?id=1RMpFxyQgRZ86TTi5IpietBjXLcGzxL6C")
+                 [6]="https://drive.google.com/uc?id=1RMpFxyQgRZ86TTi5IpietBjXLcGzxL6C" \
+                 [7]="https://drive.google.com/uc?id=1eKW5sNKEqRtUcBvyrMK1YF8b9PtNBqT8" \
+                 [8]="https://drive.google.com/uc?id=1cQeaZg-EhfBHX-QVHhaao9XJ-I-jQiQI" \
+                 [9]="https://drive.google.com/uc?id=1h6jaTee3Bdj0Rs6_dWNVONyxXv0xo67P")
 
 # Old links
 # 1 https://drive.google.com/uc?id=1_YWTi4gTOS6e5AKuGXWopAMUPDFU3IRl
@@ -59,10 +62,12 @@ mkdir segments
 
 python3 create_tables.py
 
-declare -a vid2table=([1]=1 [2]=2 [3]=3 [4]=4 [5]=5 [6]=6)
+declare -a vid2table=([1]=1 [2]=2 [3]=3 [4]=4 [5]=5 [6]=6 [7]=7 [8]=8 [9]=9)
 
-for vt in "${!vid2table[@]}"; do
+declare -a tempvid2table=([7]=7 [8]=8 [9]=9)
 
-    python3 create_segs.py -f ./vids/$vt".MOV" -t ./tables/${vid2table[$vt]}".table"
+for vt in "${!tempvid2table[@]}"; do
+
+    python3 create_segs.py -f ./vids/$vt".MOV" -t ./tables/${tempvid2table[$vt]}".table"
 
 done
