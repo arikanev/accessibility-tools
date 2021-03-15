@@ -47,6 +47,8 @@ general downloads
 
 - Display speech recognition interface (basically make it easier to capture user speech at correct moments) in dialog/popup boxes
   - dig into SpeechRecognition api, eventually use some sort of more customizable alternative, parratron, live transcribe, something for HOH speech to be understood
+  -  https://github.com/speechbrain/speechbrain 
+  -  https://speechbrain.github.io
 
 - MPV player should remain open as popup for user input appears after each vid. Try increasing CPU threads to 2 and/or running parallel process.
 
