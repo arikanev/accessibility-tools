@@ -4,7 +4,7 @@
 Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals in learning to read lips, in an isolated setting or in conjunction with other assistive modalities (haptic device, cochlear implant, hearing aid).
 
 # Help with videos
-We encourage anyone that is considering helping, to add to our training data by sending a video of themselves reciting a **column** of words from the confusable pairs [list](https://docs.google.com/document/d/1RfgYMfz1IBhVNNRd84miKrfkIJbT7OiZ_k-w_hcaF0A/edit?usp=sharing). Please send either the video or a downloadable link to it, to accessibility.software@gmail.com.
+We encourage anyone that is considering helping, to add to our training data by sending a video of themselves reciting a **column** of words from the confusable pairs [list](https://docs.google.com/document/d/1RfgYMfz1IBhVNNRd84miKrfkIJbT7OiZ_k-w_hcaF0A/edit?usp=sharing). Please send either the video or a downloadable link to it, to arikanevsky@gmail.com.
 
 [Current video archive](https://drive.google.com/drive/folders/1ALMMmjeSFkHpLxhxc-r0llzCmVpYWe4O?usp=sharing)
 
