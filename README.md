@@ -6,7 +6,7 @@ Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals i
 # Help with videos
 We encourage anyone that is considering helping, to aid to our training data by sending a video of themselves reciting a row of words from the confusable pairs [list](https://docs.google.com/document/d/13GpoYdtYY1n3ucPsyx_2zyGxcx2v8TzOoKCesnsnOow/edit?usp=sharing&resourcekey=0-cTmlGdjAmKiQDlsEhAJNVg). Please send either the video or a downloadable link to it, to accessibility.software@gmail.com.
 
-[Current video archive] (https://drive.google.com/drive/folders/1ALMMmjeSFkHpLxhxc-r0llzCmVpYWe4O?usp=sharing)
+[Current video archive](https://drive.google.com/drive/folders/1ALMMmjeSFkHpLxhxc-r0llzCmVpYWe4O?usp=sharing)
 
 # CLI Install / Setup
 ## dependencies 
