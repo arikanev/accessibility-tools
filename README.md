@@ -52,7 +52,7 @@ This mode is purely for the user to gauge their own skill/ability.
 
 ### Modified training with correct `(--wcor)`
 
-User is presented video segments in the same style as **Training**, but the command line will optionally take user input on whether or not they correctly determined the word spoken in the current video segment.
+User is presented video segments in the same style as **Modified Training**, but the command line will optionally take user input on whether or not they correctly determined the word spoken in the current video segment.
 
 A score is tabulated at the end.
 
