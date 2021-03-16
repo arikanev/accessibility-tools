@@ -37,26 +37,25 @@ We encourage anyone that is considering helping, to aid to our training data by 
 
 ## Documentation (CLI options)
 
-`
-  --range RANGE RANGE, -r RANGE RANGE
+`--range RANGE RANGE, -r RANGE RANGE`
                         start and end integer range of video segments to select.
                    
-  --train, -tr          enables training mode.
-  --trainm, -trm        enables modified training mode.
-  --test, -t            enables testing mode.
-  --numreps NUMREPS, -nr NUMREPS
+`--train, -tr `         enables training mode.
+`--trainm, -trm `       enables modified training mode.
+`--test, -t `           enables testing mode.
+`--numreps NUMREPS, -nr NUMREPS`
                         number of times a video segments is repeated during training.
-  --shuffle, -s         shuffle selected segments randomly.
-  --vname VNAME, -v VNAME
+`--shuffle, -s`         shuffle selected segments randomly.
+`--vname VNAME, -v VNAME`
                         name of video file to pull segments from.
-  --fname FNAME, -f FNAME
+`--fname FNAME, -f FNAME`
                         name of results file.
-  --idxs IDXS [IDXS ...], -i IDXS [IDXS ...]
+`--idxs IDXS [IDXS ...], -i IDXS [IDXS ...]`
                         indices of specific video segments to select. If used, overrides range argument.
-  --vidxs VIDXS, -vi VIDXS
+`--vidxs VIDXS, -vi VIDXS`
                         indices of specific video segments to select across all video files specified. (Key-generator).
-  --wcor, -wc           modified training mode will now include some testing features (warm up).
-`
+`--wcor, -wc `          modified training mode will now include some testing features (warm up).
+
 
 
 ### Future Steps!
