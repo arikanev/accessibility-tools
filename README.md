@@ -4,20 +4,19 @@
 
 mac OSX
 
-`brew install ffmpeg`
-`brew install portaudio`
+`brew install ffmpeg portaudio`
+
 `pip3 install pyaudio`
 
 linux
 
 `sudo apt-get install python-pyaudio python3-pyaudio`
+
 `sudo apt install ffmpeg`
 
-general downloads
+general requirements (OSX, linux, etc.)
 
-`pip3 install SpeechRecognition`
-`pip3 install gdown`
-`pip3 install pyspellchecker`
+`pip3 install SpeechRecognition gdown pyspellchecker`
 
 # v1 (from youtube video source)
 
