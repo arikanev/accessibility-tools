@@ -27,7 +27,7 @@ We encourage anyone that is considering helping, to aid to our training data by 
 
 `pip3 install SpeechRecognition gdown pyspellchecker`
 
-# Quick start v2
+## Quick start v2
 
 ## Download hosted videos, create tables, create segments
 
