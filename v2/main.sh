@@ -64,10 +64,8 @@ python3 create_tables.py
 
 declare -a vid2table=([1]=1 [2]=2 [3]=3 [4]=4 [5]=5 [6]=6 [7]=7 [8]=8 [9]=9)
 
-declare -a tempvid2table=([7]=7 [8]=8 [9]=9)
+for vt in "${!vid2table[@]}"; do
 
-for vt in "${!tempvid2table[@]}"; do
-
-    python3 create_segs.py -f ./vids/$vt".MOV" -t ./tables/${tempvid2table[$vt]}".table"
+    python3 create_segs.py -f ./vids/$vt".MOV" -t ./tables/${vid2table[$vt]}".table"
 
 done

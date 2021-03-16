@@ -257,6 +257,7 @@ parser.add_argument('--fname', '-f', type=str, default="haptic", help='name head
 parser.add_argument('--idxs', '-i', type=int, nargs='+', help='indices of specific video segments to select. If used, overrides range argument')
 #TODO finish this one
 parser.add_argument('--vidxs', '-vi', type=str, help='indices of specific video segments to select across all video files specified')
+##
 parser.add_argument('--wcor', '-wc', action='store_true', help='modified training mode will include some testing features (warm up)')
 
 args = parser.parse_args()
