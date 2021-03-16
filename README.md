@@ -38,19 +38,19 @@ We encourage anyone that is considering helping, to aid to our training data by 
 
 ## Documentation
 
-### Training
+### Training `(--train)`
 
 User is presented each selected video segment, with no "quiz" between videos to determine users ability and understanding what the speaker has just said.
 
 This mode is purely for the user to get familiar with the corpus.
 
-### Modified training
+### Modified training `(--trainm)`
 
 User is presented each selected video segment twice in succession (First, without captions, second with captions), with no "quiz" between videos to determine users ability and understanding what the speaker has just said.
 
 This mode is purely for the user to gauge their own skill/ability.
 
-### Modified training with correct `(--wcor)`
+### Modified training with correct `(--trainm --wcor)`
 
 User is presented video segments in the same style as **Modified Training**, but the command line will optionally take user input on whether or not they correctly determined the word spoken in the current video segment.
 
@@ -58,7 +58,7 @@ A score is tabulated at the end.
 
 This mode enables some extra pressure, a sort of warm-up for testing.
 
-### Testing
+### Testing `(--test)`
 
 User is presented each selected video segment as many times as specified in `--numreps NUMREPS` (default is 1), without captions. After each segment a dialog box will ask the user to type in their best guess as to what word was just spoken.
 
@@ -92,7 +92,7 @@ We would like there to be additional modes for testing to reduce the scope/diffi
                         indices of specific video segments to select. If used, overrides range argument.
                         
 `--vidxs VIDXS, -vi VIDXS`
-                        indices of specific video segments to select across all video files specified. (Key-generator).
+                        indices of specific video segments to select across all video files specified. (Key-generator). (**still needs implementing**)
                         
 `--wcor, -wc `          modified training mode will now include some testing features (warm up).
 
