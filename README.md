@@ -91,11 +91,10 @@ We would like there to be additional modes for testing to reduce the scope/diffi
 `--idxs IDXS [IDXS ...], -i IDXS [IDXS ...]`
                         indices of specific video segments to select. If used, overrides range argument.
                         
-`--vidxs VIDXS, -vi VIDXS`
-                        indices of specific video segments to select across all video files specified. (Key-generator). (**still needs implementing**)
-                        
 `--wcor, -wc `          modified training mode will now include some testing features (warm up).
 
+`--vidxs VIDXS, -vi VIDXS`
+                        indices of specific video segments to select across all video files specified. (Key-generator). (**still needs implementing**)
 
 
 
