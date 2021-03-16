@@ -38,7 +38,7 @@ We encourage anyone that is considering helping, to aid to our training data by 
 `python3 play_some_segs.py -i segment0 segment7 segment34 -tr -t -v videoname`
 
 
-## Documentation
+# Documentation
 
 ### Training `(--train)`
 
