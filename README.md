@@ -45,13 +45,13 @@ User is presented each selected video segment, with no "quiz" between videos to 
 
 This mode is purely for the user to get familiar with the corpus.
 
-### Modified training `(--trainm)`
+### Modified training `(--train --trainm)`
 
 User is presented each selected video segment twice in succession (First, without captions, second with captions), with no "quiz" between videos to determine users ability and understanding what the speaker has just said.
 
 This mode is purely for the user to gauge their own skill/ability.
 
-### Modified training with correct `(--trainm --wcor)`
+### Modified training with correct `(--train --trainm --wcor)`
 
 User is presented video segments in the same style as **Modified Training**, but the command line will optionally take user input on whether or not they correctly determined the word spoken in the current video segment.
 
