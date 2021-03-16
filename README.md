@@ -4,12 +4,11 @@
 Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals in learning to read lips, in an isolated setting or in conjunction with other assistive modalities (haptic device, cochlear implant, hearing aid).
 
 # Help with videos
-We encourage anyone that is considering helping, to aid to our training data by sending a video of themselves reciting a row of words from the confusable pairs [list](https://docs.google.com/document/d/13GpoYdtYY1n3ucPsyx_2zyGxcx2v8TzOoKCesnsnOow/edit?usp=sharing&resourcekey=0-cTmlGdjAmKiQDlsEhAJNVg). Please send either the video or a downloadable link to it, to accessibility.software@gmail.com.
+We encourage anyone that is considering helping, to add to our training data by sending a video of themselves reciting a **column** of words from the confusable pairs [list](https://docs.google.com/document/d/1RfgYMfz1IBhVNNRd84miKrfkIJbT7OiZ_k-w_hcaF0A/edit?usp=sharing). Please send either the video or a downloadable link to it, to arikanevsky@gmail.com.
 
 [Current video archive](https://drive.google.com/drive/folders/1ALMMmjeSFkHpLxhxc-r0llzCmVpYWe4O?usp=sharing)
 
 # CLI Install / Setup
-## dependencies 
 
 ### mac OSX
 
@@ -27,18 +26,18 @@ We encourage anyone that is considering helping, to aid to our training data by 
 
 `pip3 install SpeechRecognition gdown pyspellchecker`
 
-# Quick start v2
+## v2 quick start
 
-## Download hosted videos, create tables, create segments
+### Download hosted videos, create tables, create segments
 
 `bash main.sh`
 
-## Run a basic session (training, then testing, on specified video segments.)
+### Run a basic session (training, then testing, on specified video segments.)
 
 `python3 play_some_segs.py -i segment0 segment7 segment34 -tr -t -v videoname`
 
 
-## Documentation
+# Documentation
 
 ### Training `(--train)`
 
