@@ -40,6 +40,7 @@ We encourage anyone that is considering helping, to aid to our training data by 
 `
   --range RANGE RANGE, -r RANGE RANGE
                         start and end integer range of video segments to select.
+                   
   --train, -tr          enables training mode.
   --trainm, -trm        enables modified training mode.
   --test, -t            enables testing mode.
