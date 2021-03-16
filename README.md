@@ -67,7 +67,9 @@ Results are calculated at the end of testing.
 
 We would like there to be additional modes for testing to reduce the scope/difficulty/number of potential answers, specifically a multiple choice mode and a confusable pair mode, to be more isolating/conducive to an experimental environment to test efficacy of alternative modalities for deaf and hard of hearing.
 
-![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/Screen%20Shot%202021-03-16%20at%207.22.11%20PM.png)
+![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/Screen%20Shot%202021-03-16%20at%207.23.54%20PM.png)
+
+![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/Screen%20Shot%202021-03-16%20at%207.22.30%20PM.png)
 
 ### CLI options
 
