@@ -2,19 +2,19 @@
 
 ## dependencies 
 
-mac OSX
+### mac OSX
 
 `brew install ffmpeg portaudio`
 
 `pip3 install pyaudio`
 
-linux
+### linux
 
 `sudo apt-get install python-pyaudio python3-pyaudio`
 
 `sudo apt install ffmpeg`
 
-general requirements (OSX, linux, etc.)
+### general requirements (OSX, linux, etc.)
 
 `pip3 install SpeechRecognition gdown pyspellchecker`
 
