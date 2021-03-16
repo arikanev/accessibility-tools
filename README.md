@@ -56,4 +56,4 @@ general downloads
 
 - add speech rec as alternative option to text boxes, argparse
 
-# - separate accessibility tool project: TooLoud interface of some sort. We want it on phones or haptics.
+### - separate accessibility tool project: TooLoud interface of some sort. (phones or haptics?)
