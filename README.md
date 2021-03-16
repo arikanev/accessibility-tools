@@ -9,7 +9,6 @@ We encourage anyone that is considering helping, to add to our training data by 
 [Current video archive](https://drive.google.com/drive/folders/1ALMMmjeSFkHpLxhxc-r0llzCmVpYWe4O?usp=sharing)
 
 # CLI Install / Setup
-## dependencies 
 
 ### mac OSX
 
@@ -27,7 +26,6 @@ We encourage anyone that is considering helping, to add to our training data by 
 
 `pip3 install SpeechRecognition gdown pyspellchecker`
 
-## Quick start v2
 
 ### Download hosted videos, create tables, create segments
 
