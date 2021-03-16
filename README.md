@@ -25,7 +25,7 @@ We encourage anyone that is considering helping, to aid to our training data by 
 
 `pip3 install SpeechRecognition gdown pyspellchecker`
 
-# v2
+# Quick start v2
 
 ## Download hosted videos, create tables, create segments
 
@@ -35,7 +35,38 @@ We encourage anyone that is considering helping, to aid to our training data by 
 
 `python3 play_some_segs.py -i segment0 segment7 segment34 -tr -t -v videoname`
 
-## Documentation (CLI options)
+
+## Documentation
+
+### Training
+
+User is presented each selected video segment, with no "quiz" between videos to determine users ability and understanding what the speaker has just said.
+
+This mode is purely for the user to get familiar with the corpus.
+
+### Modified training
+
+User is presented each selected video segment twice in succession (First, without captions, second with captions), with no "quiz" between videos to determine users ability and understanding what the speaker has just said.
+
+This mode is purely for the user to gauge their own skill/ability.
+
+### Modified training with correct `(--wcor)`
+
+User is presented video segments in the same style as **Training**, but the command line will optionally take user input on whether or not they correctly determined the word spoken in the current video segment.
+
+A score is tabulated at the end.
+
+This mode enables some extra pressure, a sort of warm-up for testing.
+
+### Testing
+
+User is presented each selected video segment as many times as specified in `--numreps NUMREPS` (default is 1), without captions. After each segment a dialog box will ask the user to type in their best guess as to what word was just spoken.
+
+Results are calculated at the end of testing.
+
+We would like there to be additional modes for testing to reduce the scope/difficulty/number of potential answers, specifically a multiple choice mode and a confusable pair mode, to be more isolating/conducive to an experimental environment to test efficacy of alternative modalities for deaf and hard of hearing.
+
+### CLI options
 
 `--range RANGE RANGE, -r RANGE RANGE`
                         start and end integer range of video segments to select.
@@ -64,6 +95,7 @@ We encourage anyone that is considering helping, to aid to our training data by 
                         indices of specific video segments to select across all video files specified. (Key-generator).
                         
 `--wcor, -wc `          modified training mode will now include some testing features (warm up).
+
 
 
 
