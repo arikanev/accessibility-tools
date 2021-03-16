@@ -29,11 +29,11 @@ We encourage anyone that is considering helping, to add to our training data by 
 
 ## Quick start v2
 
-## Download hosted videos, create tables, create segments
+### Download hosted videos, create tables, create segments
 
 `bash main.sh`
 
-## Run a basic session (training, then testing, on specified video segments.)
+### Run a basic session (training, then testing, on specified video segments.)
 
 `python3 play_some_segs.py -i segment0 segment7 segment34 -tr -t -v videoname`
 
