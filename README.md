@@ -1,10 +1,10 @@
 # accessibility-tools
 
 # Overview
-Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals in learning to read lips, in an isolated setting or in conjunction with other assistive modalities (haptic device, cochlear implant, hearing aid)
+Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals in learning to read lips, in an isolated setting or in conjunction with other assistive modalities (haptic device, cochlear implant, hearing aid).
 
 # Help with videos
-We encourage anyone that is considering helping, to aid to our training data by sending a video of themselves reciting a row of words from the confusable pairs [list](https://docs.google.com/document/d/13GpoYdtYY1n3ucPsyx_2zyGxcx2v8TzOoKCesnsnOow/edit?usp=sharing&resourcekey=0-cTmlGdjAmKiQDlsEhAJNVg). Please send either the video or a downloadable link to it, to accessibility.software@gmail.com
+We encourage anyone that is considering helping, to aid to our training data by sending a video of themselves reciting a row of words from the confusable pairs [list](https://docs.google.com/document/d/13GpoYdtYY1n3ucPsyx_2zyGxcx2v8TzOoKCesnsnOow/edit?usp=sharing&resourcekey=0-cTmlGdjAmKiQDlsEhAJNVg). Please send either the video or a downloadable link to it, to accessibility.software@gmail.com.
 
 # CLI Install / Setup
 ## dependencies 
