@@ -45,19 +45,25 @@ User is presented each selected video segment, with no "quiz" between videos to 
 
 This mode is purely for the user to get familiar with the corpus.
 
+![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/tr.gif)
+
 ### Modified training `(--train --trainm)`
 
 User is presented each selected video segment twice in succession (First, without captions, second with captions), with no "quiz" between videos to determine users ability and understanding what the speaker has just said.
 
 This mode is purely for the user to gauge their own skill/ability.
 
+![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/Screen%20Shot%202021-03-16%20at%207.23.54%20PM.png)
+
 ### Modified training with correct `(--train --trainm --wcor)`
 
-User is presented video segments in the same style as **Modified Training**, but the command line will optionally take user input on whether or not they correctly determined the word spoken in the current video segment.
+User is presented video segments in the same style as **Modified Training**, but the command line will **optionally** take user input on whether or not they correctly determined the word spoken in the current video segment.
 
 A score is tabulated at the end.
 
 This mode enables some extra pressure, a sort of warm-up for testing.
+
+![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/Screen%20Shot%202021-03-16%20at%207.22.11%20PM.png)
 
 ### Testing `(--test)`
 
@@ -66,8 +72,6 @@ User is presented each selected video segment as many times as specified in `--n
 Results are calculated at the end of testing.
 
 We would like there to be additional modes for testing to reduce the scope/difficulty/number of potential answers, specifically a multiple choice mode and a confusable pair mode, to be more isolating/conducive to an experimental environment to test efficacy of alternative modalities for deaf and hard of hearing.
-
-![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/Screen%20Shot%202021-03-16%20at%207.23.54%20PM.png)
 
 ![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/Screen%20Shot%202021-03-16%20at%207.22.30%20PM.png)
 
