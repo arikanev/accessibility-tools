@@ -264,13 +264,21 @@ args = parser.parse_args()
 if args.vidxs:
     vidxs = {}
     for i, vi in enumerate(args.vidxs):
-        if vi == 'v':
-            cur_vid_idx = int(args.vidxs[i + 1])
-            vidxs.update({cur_vid_idx:[]})
-        elif vi == 's' and args.vidxs[i + 2].isdigit():
-            vidxs[cur_vid_idx].append(int(args.vidxs[i + 1] + args.vidxs[i + 2]))
-        elif vi == 's' and not args.vidxs[i + 2].isdigit():
-            vidxs[cur_vid_idx].append(int(args.vidxs[i + 1]))
+
+        try:
+
+            if vi == 'v':
+                cur_vid_idx = int(args.vidxs[i + 1])
+                vidxs.update({cur_vid_idx:[]})
+
+            elif vi == 's' and args.vidxs[i + 2].isdigit():
+                vidxs[cur_vid_idx].append(int(args.vidxs[i + 1] + args.vidxs[i + 2]))
+            elif vi == 's' and not args.vidxs[i + 2].isdigit():
+                vidxs[cur_vid_idx].append(int(args.vidxs[i + 1]))
+
+        except IndexError:
+
+           vidxs[cur_vid_idx].append(int(args.vidxs[i + 1]))
 
 elif args.idxs:
     idxs = []
