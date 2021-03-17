@@ -254,12 +254,11 @@ parser.add_argument('--numreps', '-nr', type=int, nargs=1, default=1, help='numb
 parser.add_argument('--shuffle', '-s', action='store_true', help='shuffles videos randomly')
 parser.add_argument('--vname', '-v', type=str, default='all', help='name heading of video file')
 parser.add_argument('--fname', '-f', type=str, default="lipread", help='name heading of results logfile')
-parser.add_argument('--idxs', '-i', type=str, help='indices of specific video segments to select. If used, overrides range argument')
-parser.add_argument('--vidxs', '-vi', type=str, help='indices of specific video segments to select across all video files specified. If used, overrides idxs argument.')
+parser.add_argument('--idxs', '-i', type=int, nargs='+', help='indices of specific video segments to select. If used, overrides range argument')
+parser.add_argument('--vidxs', '-vi', type=str, default=None, help='indices of specific video segments to select across all video files specified. If used, overrides idxs argument.')
 parser.add_argument('--wcor', '-wc', action='store_true', help='modified training mode will include some testing features (warm up)')
 
 args = parser.parse_args()
-
 
 if args.vidxs:
     vidxs = {}
@@ -296,8 +295,7 @@ if type(args.numreps) == list:
     args.numreps = args.numreps[0]
 
 
-
-if vidxs:
+if args.vidxs:
     for vid, idxs in vidxs.items():
 
         numreps = 0
@@ -323,6 +321,10 @@ elif args.vname == "all":
 
     for vid in vids:
 
+        numreps = 0
+        seg = []
+        preds = []
+
         cor_words, inc_words = [], []
 
         if args.train and args.test:
@@ -334,6 +336,13 @@ elif args.vname == "all":
             test(vid, idxs, numreps, preds, cor_words, inc_words)
 
 else:
+
+    numreps = 0
+    seg = []
+    preds = []
+
+    cor_words, inc_words = [], []
+
     if args.train and args.test:
         train(args.vname, idxs, preds, cor_words, inc_words, args.trainm, args.wcor)
         test(args.vname, idxs, numreps, preds, cor_words, inc_words)
