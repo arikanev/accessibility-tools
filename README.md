@@ -126,3 +126,5 @@ We would like there to be additional modes for testing to reduce the scope/diffi
 - add speech rec as alternative option to text boxes, argparse
 
 ### - separate accessibility tool project: TooLoud interface of some sort. (phones or haptics?)
+
+Huge credits to `ffmpeg` and `mpv`
