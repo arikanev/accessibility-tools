@@ -53,7 +53,7 @@ User is presented each selected video segment twice in succession (First, withou
 
 This mode is purely for the user to gauge their own skill/ability.
 
-![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/Screen%20Shot%202021-03-16%20at%207.23.54%20PM.png)
+![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/trtrm.gif)
 
 ### Modified training with correct `(--train --trainm --wcor)`
 
@@ -63,7 +63,7 @@ A score is tabulated at the end.
 
 This mode enables some extra pressure, a sort of warm-up for testing.
 
-![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/Screen%20Shot%202021-03-16%20at%207.22.11%20PM.png)
+![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/trtrmwc.gif)
 
 ### Testing `(--test)`
 
@@ -73,7 +73,7 @@ Results are calculated at the end of testing.
 
 We would like there to be additional modes for testing to reduce the scope/difficulty/number of potential answers, specifically a multiple choice mode and a confusable pair mode, to be more isolating/conducive to an experimental environment to test efficacy of alternative modalities for deaf and hard of hearing.
 
-![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/Screen%20Shot%202021-03-16%20at%207.22.30%20PM.png)
+![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/t.gif)
 
 ### CLI options
 
