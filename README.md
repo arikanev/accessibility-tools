@@ -34,7 +34,7 @@ We encourage anyone that is considering helping, to add to our training data by 
 
 ### Run a basic session (training, then testing, on specified video segments.)
 
-`python3 play_some_segs.py -i segment0 segment7 segment34 -tr -t -v videoname`
+`python3 play_some_segs.py -i segmentA segmentB segmentC -tr -t -v videoD`
 
 
 # Documentation
