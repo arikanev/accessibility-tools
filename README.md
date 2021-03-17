@@ -44,7 +44,7 @@ We encourage anyone that is considering helping, to add to our training data by 
 
 `python3 play_some_segs.py -tr -t -vi v1s2s4s35s42v4s1s3s38s29v7s0`
 
-`v1s2s4s35s42v4s1s3s38s29v7s0` specifies:
+v1s2s4s35s42v4s1s3s38s29v7s0 specifies:
 
 video 1, segments 2, 4, 35, 42
 
