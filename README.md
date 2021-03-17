@@ -44,11 +44,11 @@ segment indices 1, 26, 13
 
 -tr specifies:
 
-[training mode](https://github.com/arikanev/accessibility-tools/blob/main/README.md#training---train
+### [training](https://github.com/arikanev/accessibility-tools/blob/main/README.md#training---train)
 
 -t specifies:
 
-[testing mode](https://github.com/arikanev/accessibility-tools/blob/main/README.md#testing---test)
+### [testing](https://github.com/arikanev/accessibility-tools/blob/main/README.md#testing---test)
 
 -v specifies:
 
