@@ -28,19 +28,33 @@ We encourage anyone that is considering helping, to add to our training data by 
 
 ## v2 quick start
 
-### Download hosted videos, create tables, create segments
+### Download hosted videos, create tables, create segments.
 
 `bash main.sh`
 
-### Run a basic session (training, then testing, on specified video segments indices from video 1.)
+### Run a basic session.
 
-### Example
+### Example 1
 
 `python3 play_some_segs.py -i 1 26 13 -tr -t -v 1`
 
-### Run a basic session (training, then testing, on specified video segments from all specified videos (using key).)
+-i specifies:
 
-### Example
+segment indices 1, 26, 13
+
+-tr specifies:
+
+[training mode](###training)
+
+-t specifies:
+
+[testing mode](###testing)
+
+-v specifies:
+
+video 1
+
+### Example 2
 
 `python3 play_some_segs.py -tr -t -vi v1s2s4s35s42v4s1s3s38s29v7s0`
 
@@ -56,6 +70,8 @@ video 7, segment 0
 
 ### Training `(--train)`
 
+`(-tr)`
+
 User is presented each selected video segment, with no "quiz" between videos to determine users ability and understanding what the speaker has just said.
 
 This mode is purely for the user to get familiar with the corpus.
@@ -64,6 +80,8 @@ This mode is purely for the user to get familiar with the corpus.
 
 ### Modified training `(--train --trainm)`
 
+`(-tr -trm)`
+
 User is presented each selected video segment twice in succession (First, without captions, second with captions), with no "quiz" between videos to determine users ability and understanding what the speaker has just said.
 
 This mode is purely for the user to gauge their own skill/ability.
@@ -71,6 +89,8 @@ This mode is purely for the user to gauge their own skill/ability.
 ![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/trtrm.gif)
 
 ### Modified training with correct `(--train --trainm --wcor)`
+
+`(-tr -trm -wc)`
 
 User is presented video segments in the same style as **Modified Training**, but the command line will **optionally** take user input on whether or not they correctly determined the word spoken in the current video segment.
 
@@ -81,6 +101,8 @@ This mode enables some extra pressure, a sort of warm-up for testing.
 ![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/trtrmwc.gif)
 
 ### Testing `(--test)`
+
+`(-t)`
 
 User is presented each selected video segment as many times as specified in `--numreps NUMREPS` (default is 1), without captions. After each segment a dialog box will ask the user to type in their best guess as to what word was just spoken.
 
