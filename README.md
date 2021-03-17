@@ -52,7 +52,7 @@ segment indices 1, 26, 13
 
 `-v` specifies:
 
-[video 1](https://drive.google.com/drive/folders/1ALMMmjeSFkHpLxhxc-r0llzCmVpYWe4O)
+[video 1](https://drive.google.com/file/d/1kBnA2wt9AmZlSUp223pF2SQ7MApoWIkp/view?usp=sharing)
 
 ### Example 2
 
