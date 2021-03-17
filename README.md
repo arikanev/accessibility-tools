@@ -38,19 +38,19 @@ We encourage anyone that is considering helping, to add to our training data by 
 
 `python3 play_some_segs.py -i 1 26 13 -tr -t -v 1`
 
--i specifies:
+`-i` specifies:
 
 segment indices 1, 26, 13
 
--tr specifies:
+`-tr` specifies:
 
-### [training](https://github.com/arikanev/accessibility-tools/blob/main/README.md#training---train)
+[training](https://github.com/arikanev/accessibility-tools/blob/main/README.md#training---train)
 
--t specifies:
+`-t` specifies:
 
-### [testing](https://github.com/arikanev/accessibility-tools/blob/main/README.md#testing---test)
+[testing](https://github.com/arikanev/accessibility-tools/blob/main/README.md#testing---test)
 
--v specifies:
+`-v` specifies:
 
 video 1
 
@@ -58,7 +58,7 @@ video 1
 
 `python3 play_some_segs.py -tr -t -vi v1s2s4s35s42v4s1s3s38s29v7s0`
 
-v1s2s4s35s42v4s1s3s38s29v7s0 specifies:
+`-vi` specifies:
 
 video 1, segments 2, 4, 35, 42
 
