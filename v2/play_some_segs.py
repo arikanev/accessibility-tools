@@ -97,7 +97,9 @@ class MyDialog(simpledialog.Dialog):
         box.pack()
 
 
-def train(vid, mod_tr=False, wc=False, preds=[], segs=[]):
+def train(vid, idxs, preds, cor_words, inc_words, mod_tr=False, wc=False, segs=[]):
+
+    segs = []
 
     if mod_tr:
 
@@ -117,7 +119,7 @@ def train(vid, mod_tr=False, wc=False, preds=[], segs=[]):
                     elif inp == 'w':
                        preds.append(0)
                     segs = []
-            score(trainm=True)
+            score(vid, idxs, cor_words, inc_words, trainm=True)
             preds = []
 
         else:
@@ -140,7 +142,6 @@ def train(vid, mod_tr=False, wc=False, preds=[], segs=[]):
                 subprocess.call(["mpv", '--fs', '--sid=no'] + ['segments/{}-{}-subs.mp4'.format(vid, i)])
                 time.sleep(.2)
         '''
-
     else:
         for i in idxs:
             for n in range(args.numreps):
@@ -148,7 +149,7 @@ def train(vid, mod_tr=False, wc=False, preds=[], segs=[]):
         subprocess.call(["mpv", '--fs'] + segs)
 
 
-def test(vid, idxs, numreps, preds=[]):
+def test(vid, idxs, numreps, preds, cor_words, inc_words):
 
     for i in idxs:
 
@@ -192,8 +193,7 @@ def test(vid, idxs, numreps, preds=[]):
 
             continue
 
-    score()
-
+    score(vid, idxs, cor_words, inc_words, trainm=False)
 
 def pop_up():
 
@@ -214,7 +214,9 @@ def pop_up():
     return ROOT
 
 
-def score(trainm=False):
+def score(vid, idxs, cor_words, inc_words, trainm):
+
+    r1, r2  = idxs[0], idxs[len(idxs)-1]
 
     if trainm:
 
@@ -222,63 +224,62 @@ def score(trainm=False):
 
         print("acc for modified training: {}".format(acc))
 
-        with open('training_{}_{}_{}-{}.txt'.format(args.fname, args.vname, args.range[0], args.range[1]), 'w') as f:
+        with open('training_{}_{}_{}-{}.txt'.format(args.fname, vid, r1, r2), 'w') as f:
             f.write("acc: {}".format(acc))
 
     else:
 
-        with open('{}_{}_{}-{}.txt'.format(args.fname, args.vname, args.range[0], args.range[1]), 'w') as f:
+        with open('{}_{}_{}-{}.txt'.format(args.fname, vid, r1, r2), 'w') as f:
             f.write("correct: \n {} \nincorrect: \n {}".format(cor_words, inc_words))
 
         acc = len([i for i in preds if i == 1]) / len(preds)
 
         with open('{}_summary.txt'.format(args.fname), 'a') as f:
-            f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n acc: {}".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words, acc))
+            f.write("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n acc: {}".format(args.fname, vid, r1, r2, cor_words, inc_words, acc))
 
         print(preds)
 
         # calculate and print WER
-        print("acc (% of correctly guessed words in range {} - {}): {}".format(args.range[0], args.range[1], acc))
+        print("acc (% of correctly guessed words in range {} - {}): {}".format(r1, r2, acc))
 
-        print("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, args.vname, args.range[0], args.range[1], cor_words, inc_words))
-
-
+        print("\n{} {} range {} - {}\ncorrect: \n {} \nincorrect: \n {}\n".format(args.fname, vid, r1, r2, cor_words, inc_words))
 
 
 parser = argparse.ArgumentParser(description='args for playing phoneme segments')
-parser.add_argument('--range', '-r', type=int, nargs=2, default=[0, 10], help='start and end integer range of videos to select. In form start end')
+parser.add_argument('--range', '-r', type=int, nargs=2, help='start and end integer range of videos to select. In form start end')
 parser.add_argument('--train', '-tr', action='store_true', help='enables training mode')
 parser.add_argument('--trainm', '-trm', action='store_true', help='enables modified training mode')
 parser.add_argument('--test', '-t', action='store_true', help='enables testing mode')
 parser.add_argument('--numreps', '-nr', type=int, nargs=1, default=1, help='number of repetitions of phonemes during training')
 parser.add_argument('--shuffle', '-s', action='store_true', help='shuffles videos randomly')
-parser.add_argument('--vname', '-v', type=str, default="all", help='name heading of video file')
-parser.add_argument('--fname', '-f', type=str, default="haptic", help='name heading of results logfile')
-parser.add_argument('--idxs', '-i', type=int, nargs='+', help='indices of specific video segments to select. If used, overrides range argument')
-#TODO finish this one
-parser.add_argument('--vidxs', '-vi', type=str, help='indices of specific video segments to select across all video files specified')
-##
+parser.add_argument('--vname', '-v', type=str, default='all', help='name heading of video file')
+parser.add_argument('--fname', '-f', type=str, default="lipread", help='name heading of results logfile')
+parser.add_argument('--idxs', '-i', type=str, help='indices of specific video segments to select. If used, overrides range argument')
+parser.add_argument('--vidxs', '-vi', type=str, help='indices of specific video segments to select across all video files specified. If used, overrides idxs argument.')
 parser.add_argument('--wcor', '-wc', action='store_true', help='modified training mode will include some testing features (warm up)')
 
 args = parser.parse_args()
 
-idxs = []
 
+if args.vidxs:
+    vidxs = {}
+    for i, vi in enumerate(args.vidxs):
+        if vi == 'v':
+            cur_vid_idx = int(args.vidxs[i + 1])
+            vidxs.update({cur_vid_idx:[]})
+        elif vi == 's' and args.vidxs[i + 2].isdigit():
+            vidxs[cur_vid_idx].append(int(args.vidxs[i + 1] + args.vidxs[i + 2]))
+        elif vi == 's' and not args.vidxs[i + 2].isdigit():
+            vidxs[cur_vid_idx].append(int(args.vidxs[i + 1]))
 
-if args.idxs:
+elif args.idxs:
+    idxs = []
     for i in args.idxs:
         idxs.append(i)
-    args.range[0], args.range[1] = idxs[0], idxs[len(idxs)-1]
 
 else:
     for i in range(args.range[0], args.range[1]):
         idxs.append(i)
-
-numreps = 0
-segs = []
-preds = []
-cor_words = []
-inc_words = []
 
 if args.shuffle:
     shuffle(idxs)
@@ -286,27 +287,49 @@ if args.shuffle:
 if type(args.numreps) == list:
     args.numreps = args.numreps[0]
 
-vids = []
-vid = None
 
-for file in os.listdir("./vids/"):
-    if file.endswith(".MOV"):
-        vids.append(file.strip(".MOV"))
 
-if args.vname == "all":
-    for vid in vids:
+if vidxs:
+    for vid, idxs in vidxs.items():
+
+        numreps = 0
+        segs = []
+        preds = []
+
+        cor_words, inc_words = [], []
+
         if args.train and args.test:
-            train(vid, args.trainm, args.wcor, preds)
-            test(vid, idxs, numreps, preds)
+            train(vid, idxs, preds, cor_words, inc_words, args.trainm, args.wcor)
+            test(vid, idxs, numreps, preds, cor_words, inc_words)
         elif args.train:
-            train(vid, args.trainm, args.wcor, preds)
+            train(vid, idxs, preds, cor_words, inc_words, args.trainm, args.wcor)
         elif args.test:
-            test(vid, idxs, numreps, preds)
+            test(vid, idxs, numreps, preds, cor_words, inc_words)
+
+elif args.vname == "all":
+    vids = []
+
+    for file in os.listdir("./vids/"):
+        if file.endswith(".MOV"):
+            vids.append(file.strip(".MOV"))
+
+    for vid in vids:
+
+        cor_words, inc_words = [], []
+
+        if args.train and args.test:
+            train(vid, idxs, preds, cor_words, inc_words, args.trainm, args.wcor)
+            test(vid, idxs, numreps, preds, cor_words, inc_words)
+        elif args.train:
+            train(vid, idxs, preds, cor_words, inc_words, args.trainm, args.wcor)
+        elif args.test:
+            test(vid, idxs, numreps, preds, cor_words, inc_words)
+
 else:
     if args.train and args.test:
-        train(args.vname, args.trainm, args.wcor, preds)
-        test(args.vname, idxs, numreps, preds)
+        train(args.vname, idxs, preds, cor_words, inc_words, args.trainm, args.wcor)
+        test(args.vname, idxs, numreps, preds, cor_words, inc_words)
     elif args.train:
-        train(args.vname, args.trainm, args.wcor, preds)
+        train(args.vname, idxs, preds, cor_words, inc_words, args.trainm, args.wcor)
     elif args.test:
-        test(args.vname, idxs, numreps, preds)
+        test(args.vname, idxs, numreps, preds, cor_words, inc_words)
