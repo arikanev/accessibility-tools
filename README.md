@@ -32,10 +32,19 @@ We encourage anyone that is considering helping, to add to our training data by 
 
 `bash main.sh`
 
-### Run a basic session (training, then testing, on specified video segments.)
+### Run a basic session (training, then testing, on specified video segments indices from video 1.)
 
-`python3 play_some_segs.py -i segmentA segmentB segmentC -tr -t -v videoD`
+### Example
 
+`python3 play_some_segs.py -i 1 26 13 -tr -t -v 1`
+
+### Run a basic session (training, then testing, on specified video segments from all specified videos (using key).)
+
+### Example
+
+`python3 play_some_segs.py -tr -t -vi v1s2s4s35s42v4s1s3s38s29v7s0`
+
+`v1s2s4s35s42v4s1s3s38s29v7s0` specifies - video 1, segments 2, 4, 35, 42 - video 4, segments 1, 3, 38, 29 - video 7, segment 0.
 
 # Documentation
 
