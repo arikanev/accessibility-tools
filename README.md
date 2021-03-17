@@ -164,4 +164,4 @@ We would like there to be additional modes for testing to reduce the scope/diffi
 
 ### - separate accessibility tool project: TooLoud interface of some sort. (phones or haptics?)
 
-Huge credits to `ffmpeg` and `mpv`
+Huge credits to [`ffmpeg`](https://github.com/FFmpeg/FFmpeg) and [`mpv`](https://github.com/mpv-player/mpv)
