@@ -24,7 +24,7 @@ We encourage anyone that is considering helping, to add to our training data by 
 
 ### general requirements (OSX, linux, etc.)
 
-`pip3 install SpeechRecognition gdown pyspellchecker`
+`pip3 install SpeechRecognition gdown pyspellchecker g2p-en`
 
 ## v2 quick start
 
@@ -60,11 +60,11 @@ segment indices 1, 26, 13
 
 `-vi` specifies:
 
-video 1, segments 2, 4, 35, 42
+[video 1](https://drive.google.com/file/d/1kBnA2wt9AmZlSUp223pF2SQ7MApoWIkp/view?usp=sharing), segments 2, 4, 35, 42
 
-video 4, segments 1, 3, 38, 29
+[video 4](https://drive.google.com/file/d/15wn7d8MwHINE9APhVQLCm31oJgHvYLoJ/view?usp=sharing), segments 1, 3, 38, 29
 
-video 7, segment 0
+[video 7](https://drive.google.com/file/d/1eKW5sNKEqRtUcBvyrMK1YF8b9PtNBqT8/view?usp=sharing), segment 0
 
 # Documentation
 
@@ -139,8 +139,6 @@ We would like there to be additional modes for testing to reduce the scope/diffi
                         
 `--wcor, -wc `          modified training mode will now include some testing features (warm up).
 
-**still needs implementing:**
-
 `--vidxs VIDXS, -vi VIDXS`
                         indices of specific video segments to select across all video files specified. (Key-generator).
 
@@ -162,6 +160,6 @@ We would like there to be additional modes for testing to reduce the scope/diffi
 
 - add speech rec as alternative option to text boxes, argparse
 
-### - separate accessibility tool project: TooLoud interface of some sort. (phones or haptics?)
+Huge credits for a lot of the core brain of this project goes to [`ffmpeg`](https://github.com/FFmpeg/FFmpeg) and [`mpv`](https://github.com/mpv-player/mpv)
 
-Huge credits to `ffmpeg` and `mpv`
+### - separate accessibility tool project: TooLoud interface of some sort. (phones or haptics?)
