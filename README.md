@@ -139,8 +139,6 @@ We would like there to be additional modes for testing to reduce the scope/diffi
                         
 `--wcor, -wc `          modified training mode will now include some testing features (warm up).
 
-**still needs implementing:**
-
 `--vidxs VIDXS, -vi VIDXS`
                         indices of specific video segments to select across all video files specified. (Key-generator).
 
