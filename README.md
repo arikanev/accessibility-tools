@@ -24,7 +24,7 @@ We encourage anyone that is considering helping, to add to our training data by 
 
 ### general requirements (OSX, linux, etc.)
 
-`pip3 install SpeechRecognition gdown pyspellchecker`
+`pip3 install SpeechRecognition gdown pyspellchecker g2p-en`
 
 ## v2 quick start
 
