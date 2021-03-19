@@ -4,7 +4,7 @@
 Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals in learning to read lips, in an isolated setting or in conjunction with other assistive modalities (haptic device, cochlear implant, hearing aid).
 
 # Help with videos
-We encourage anyone that is considering helping, to add to our training data by sending a video of themselves reciting a **column** of words from the confusable pairs [list](https://docs.google.com/document/d/1RfgYMfz1IBhVNNRd84miKrfkIJbT7OiZ_k-w_hcaF0A/edit?usp=sharing). Please send either the video or a downloadable link to it, to arikanevsky@gmail.com.
+We encourage anyone that is considering helping, to add to our training data by sending a video of themselves reciting a **column** of words from the confusable pairs [list](https://docs.google.com/document/d/1RfgYMfz1IBhVNNRd84miKrfkIJbT7OiZ_k-w_hcaF0A/edit?usp=sharing). Please send either the [video](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/record.gif) or a downloadable link to it, to arikanevsky@gmail.com.
 
 [Current video archive](https://drive.google.com/drive/folders/1ALMMmjeSFkHpLxhxc-r0llzCmVpYWe4O?usp=sharing)
 
@@ -111,6 +111,17 @@ Results are calculated at the end of testing.
 We would like there to be additional modes for testing to reduce the scope/difficulty/number of potential answers, specifically a multiple choice mode and a confusable pair mode, to be more isolating/conducive to an experimental environment to test efficacy of alternative modalities for deaf and hard of hearing.
 
 ![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/t.gif)
+
+### Recording videos
+
+`bash record.sh`
+
+User is presented a prompt to speak, and is recorded speaking words of their choosing (preferably from the confusable pairs word list).
+
+Segmentation and captioning is then done automatically.
+
+![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/record.gif)
+
 
 ### CLI options
 
