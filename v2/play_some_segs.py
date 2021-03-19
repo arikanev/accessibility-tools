@@ -265,11 +265,12 @@ if args.vidxs:
     for i, vi in enumerate(args.vidxs):
 
         try:
-
-            if vi == 'v':
+            if vi == 'v' and args.vidxs[i + 2].isdigit():
+                cur_vid_idx = int(args.vidxs[i + 1] + args.vidxs[i + 2])
+                vidxs.update({cur_vid_idx:[]})
+            elif vi == 'v' and not args.vidxs[i + 2].isdigit():
                 cur_vid_idx = int(args.vidxs[i + 1])
                 vidxs.update({cur_vid_idx:[]})
-
             elif vi == 's' and args.vidxs[i + 2].isdigit():
                 vidxs[cur_vid_idx].append(int(args.vidxs[i + 1] + args.vidxs[i + 2]))
             elif vi == 's' and not args.vidxs[i + 2].isdigit():

@@ -38,29 +38,29 @@ for vid in "${!vids[@]}"; do
 
 done
 
-#declare -A tables=([W22]="https://drive.google.com/uc?id=1LuXZuAsODEJYZAFAP8OgDDH6rydwVhq6")
+declare -A tables=([W22]="https://drive.google.com/uc?id=1LuXZuAsODEJYZAFAP8OgDDH6rydwVhq6")
 
-# for table in "${!tables[@]}"; do
+ for table in "${!tables[@]}"; do
 
-#    echo $table
+    echo $table
 
-#    if test -f ./tables/$table".table"; then
+    if test -f ./tables/$table".table"; then
 
-#        echo $table".table exists, skipping download."
+        echo $table".table exists, skipping download."
 
-#    else
+    else
 
-#        gdown "${tables[$table]}"
+        gdown "${tables[$table]}"
 
-#        find . -maxdepth 1 -name '*.table' -exec mv {} ./tables/$table".table" \;
+        find . -maxdepth 1 -name '*.table' -exec mv {} ./tables/$table".table" \;
 
-#    fi
+    fi
 
-#done
+done
 
 mkdir segments
 
-# python3 create_tables.py
+python3 create_tables.py
 
 declare -a vid2table=([1]=1 [2]=2 [3]=3 [4]=4 [5]=5 [6]=6 [7]=7 [8]=8 [9]=9)
 

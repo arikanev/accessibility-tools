@@ -14,7 +14,7 @@ def get_sec(time_str):
     try:
         m, s= time_str.split(':')
     except:
-        return int(time_str)
+        return int(round(float(time_str)))
     return int(m) * 60 + int(s)
 
 def main():
@@ -62,7 +62,7 @@ def main():
 
         pth, ext = filename.rsplit(".", 1)
         pth = "segments/" + pth.strip("./vids/")
-        cmd = "ffmpeg -i {} -vcodec copy  -strict -2 -ss {} -t {} {}-{}.{}".\
+        cmd = "ffmpeg -i {} -vcodec libx264 -acodec libmp3lame -pix_fmt yuv420p -strict -2 -ss {} -t {} {}-{}.{}".\
             format(filename, split_start, split_length[n], pth, n, ext)
         print("About to run: {}".format(cmd))
         check_call(shlex.split(cmd), universal_newlines=True)
