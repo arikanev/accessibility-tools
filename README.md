@@ -116,9 +116,9 @@ We would like there to be additional modes for testing to reduce the scope/diffi
 
 `bash record.sh`
 
-User is presented a prompt to speak, and is recorded speaking words of their choosing (preferably from the confusable pairs word list).
+User is presented a prompt to speak, and is recorded speaking words of their choosing (preferably from the confusable pairs word list). By saying "finished", the speech reco stops, and by pressing 'q' in terminal, the video capture stops.
 
-Segmentation and captioning is then done automatically.
+Segmentation and captioning is then done automatically, and playback is the same as any other video. The below GIF shows the playback method from [example 2](https://github.com/arikanev/accessibility-tools/blob/main/README#L59)
 
 ![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/record.gif)
 
