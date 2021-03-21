@@ -8,7 +8,21 @@ import time
 
 def audio(spoken_answer=None):
 
+    prompt = []
+
+    with open('min_pair_wl.txt', 'r') as wl:
+
+        l = wl.readlines()
+
+    for i in l:
+
+        prompt.append(i.split('/')[0].strip())
+
     r=sr.Recognizer()
+
+    r.non_speaking_duration = 0.5
+
+    r.pause_threshold = 0.5
 
     m=sr.Microphone()
 
@@ -20,22 +34,23 @@ def audio(spoken_answer=None):
 
     table_number = int(num_tables) + 1
 
-    start_reco = time.time()
-
     while True:
+
+        start_reco = time.time()
+
         with m as source:
             r.adjust_for_ambient_noise(source)
-            print("speak")
-            audio = r.listen(source)
-            spoken_answer = r.recognize_google(audio)
-            print(spoken_answer)
-            if spoken_answer.lower() == "finished":
+            try:
+                print(prompt[idx])
+            except IndexError:
+                print("press q to quit video")
                 return
-            if len(spoken_answer.split()) == 1:
-                with open('{}.table'.format(table_number), 'a') as table:
-                    table.write("{}. {} {} - {}\n".format(idx, spoken_answer, 0, time.time() - start_reco))
+            audio = r.listen(source)
+            spoken_answer = r.recognize_google(audio).lower()
+            print(spoken_answer, prompt[idx], spoken_answer==prompt[idx])
+            with open('{}.table'.format(table_number), 'a') as table:
+                table.write("{}. {} {} - {}\n".format(idx, spoken_answer, 0, time.time() - start_reco))
             idx += 1
-            start_reco = time.time()
 
 def video():
 

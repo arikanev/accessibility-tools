@@ -285,16 +285,18 @@ elif args.idxs:
     for i in args.idxs:
         idxs.append(i)
 
-else:
+elif args.range:
+    idxs = []
     for i in range(args.range[0], args.range[1]):
         idxs.append(i)
+
+
 
 if args.shuffle:
     shuffle(idxs)
 
 if type(args.numreps) == list:
     args.numreps = args.numreps[0]
-
 
 if args.vidxs:
     for vid, idxs in vidxs.items():
@@ -322,6 +324,15 @@ elif args.vname == "all":
 
     for vid in vids:
 
+        os.chdir("./segments/")
+
+        idxs = []
+        num_segs = int(int(subprocess.getoutput("ls -1q {}-* | wc -l".format(vid)).strip()) / 3)
+        for i in range(0, num_segs):
+            idxs.append(i)
+
+        os.chdir("..")
+
         numreps = 0
         seg = []
         preds = []
@@ -337,6 +348,15 @@ elif args.vname == "all":
             test(vid, idxs, numreps, preds, cor_words, inc_words)
 
 else:
+
+    os.chdir("./segments/")
+
+    idxs = []
+    num_segs = int(int(subprocess.getoutput("ls -1q {}-* | wc -l".format(args.vname)).strip()) / 3)
+    for i in range(0, num_segs):
+        idxs.append(i)
+
+    os.chdir("..") 
 
     numreps = 0
     seg = []
