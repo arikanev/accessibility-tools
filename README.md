@@ -66,7 +66,7 @@ segment indices 1, 26, 13
 
 [video 7](https://drive.google.com/file/d/1eKW5sNKEqRtUcBvyrMK1YF8b9PtNBqT8/view?usp=sharing), segment 0
 
-### Example 2
+### Example 3
 
 The following command will run training through all video segments of all available videos:
 
