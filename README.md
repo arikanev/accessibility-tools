@@ -66,6 +66,16 @@ segment indices 1, 26, 13
 
 [video 7](https://drive.google.com/file/d/1eKW5sNKEqRtUcBvyrMK1YF8b9PtNBqT8/view?usp=sharing), segment 0
 
+### Example 2
+
+The following command will run training through all video segments of all available videos:
+
+`python3 play_some_segs.py -tr`
+
+The following command will run training through all video segments of specified video (in this case, 3):
+
+`python3 play_some_segs.py -v 3`
+
 # Documentation
 
 ### Training `(--train)`
