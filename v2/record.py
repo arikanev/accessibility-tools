@@ -3,7 +3,7 @@ import os
 import speech_recognition as sr
 import shlex
 import subprocess
-from subprocess import check_call
+from subprocess import Popen, check_call
 import time
 
 def audio(spoken_answer=None):
@@ -34,9 +34,9 @@ def audio(spoken_answer=None):
 
     table_number = int(num_tables) + 1
 
-    while True:
+    start_reco = time.time()
 
-        start_reco = time.time()
+    while True:
 
         with m as source:
             r.adjust_for_ambient_noise(source)
@@ -46,18 +46,28 @@ def audio(spoken_answer=None):
                 print("press q to quit video")
                 return
             audio = r.listen(source)
-            spoken_answer = r.recognize_google(audio).lower()
+            try:
+                spoken_answer = r.recognize_google(audio).lower()
+            except sr.UnknownValueError:
+                spoken_answer = ""
+
             print(spoken_answer, prompt[idx], spoken_answer==prompt[idx])
-            with open('{}.table'.format(table_number), 'a') as table:
-                table.write("{}. {} {} - {}\n".format(idx, spoken_answer, 0, time.time() - start_reco))
-            idx += 1
+
+            if spoken_answer == prompt[idx] or (spoken_answer == 'p' and prompt[idx] == 'pea') or (spoken_answer == 'pi' and prompt[idx] == 'pie'):
+                with open('{}.table'.format(table_number), 'a') as table:
+                    table.write("{}. {} {} - {}\n".format(idx, spoken_answer, 0, time.time() - start_reco))
+                idx += 1
+                start_reco = time.time()
 
 def video():
 
     os.chdir('./vids/')
     num_vids = subprocess.getoutput("ls -1 | wc -l")
     vid_number = int(num_vids) + 1
-    check_call(shlex.split("ffmpeg -loglevel quiet -f avfoundation -framerate 29.97 -i 0:0 {}.mkv".format(vid_number)), universal_newlines=True)
+    p = Popen(shlex.split("ffmpeg -loglevel quiet -f avfoundation -framerate 29.97 -i 0:0 {}.mkv".format(vid_number)), universal_newlines=True)
+    if p.poll() is None:
+        print("video starting")
+    p.wait()
     check_call(shlex.split("ffmpeg -i {}.mkv -vcodec libx264 -acodec libmp3lame -pix_fmt yuv420p {}.MOV".format(vid_number, vid_number)))
     os.remove('{}.mkv'.format(vid_number))
     # os.rename("{}.mp4".format(vid_number), "{}.MOV".format(vid_number))
@@ -65,8 +75,8 @@ def video():
 
 if __name__=='__main__':
 
-    j1 = multiprocessing.Process(target=audio)
-    j2 = multiprocessing.Process(target=video)
+    j1 = multiprocessing.Process(target=video)
+    j2 = multiprocessing.Process(target=audio)
 
     j1.start()
     j2.start()
