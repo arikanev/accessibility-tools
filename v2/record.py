@@ -34,9 +34,9 @@ def audio(spoken_answer=None):
 
     table_number = int(num_tables) + 1
 
-    start_reco = time.time()
-
     while True:
+
+        start_reco = time.time()
 
         with m as source:
             r.adjust_for_ambient_noise(source)
@@ -57,7 +57,10 @@ def audio(spoken_answer=None):
                 with open('{}.table'.format(table_number), 'a') as table:
                     table.write("{}. {} {} - {}\n".format(idx, spoken_answer, 0, time.time() - start_reco))
                 idx += 1
-                start_reco = time.time()
+
+            else:
+                with open('{}.table'.format(table_number), 'a') as table:
+                    table.write("{}. {} {} - {}\n".format(idx, "GARBAGE", 0, time.time() - start_reco))
 
 def video():
 
@@ -76,6 +79,7 @@ def video():
 if __name__=='__main__':
 
     j1 = multiprocessing.Process(target=video)
+    time.sleep(1)
     j2 = multiprocessing.Process(target=audio)
 
     j1.start()

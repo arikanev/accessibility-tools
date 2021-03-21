@@ -1,4 +1,5 @@
 import argparse
+import glob
 import os
 from pathlib import Path
 from random import shuffle
@@ -324,14 +325,15 @@ elif args.vname == "all":
 
     for vid in vids:
 
-        os.chdir("./segments/")
+
+        vid_segs = glob.glob('./segments/{}-seg*'.format(vid))
+        vid_segs = [int(vs.split('-')[2].strip('.srt')) for vs in vid_segs]
+        vid_segs.sort()
 
         idxs = []
-        num_segs = int(int(subprocess.getoutput("ls -1q {}-* | wc -l".format(vid)).strip()) / 3)
-        for i in range(0, num_segs):
+        for i in vid_segs:
             idxs.append(i)
 
-        os.chdir("..")
 
         numreps = 0
         seg = []
@@ -349,14 +351,14 @@ elif args.vname == "all":
 
 else:
 
-    os.chdir("./segments/")
+    vid_segs = glob.glob('./segments/{}-seg*'.format(args.vname))
+    vid_segs = [int(vs.split('-')[2].strip('.srt')) for vs in vid_segs]
+    vid_segs.sort()
 
     idxs = []
-    num_segs = int(int(subprocess.getoutput("ls -1q {}-* | wc -l".format(args.vname)).strip()) / 3)
-    for i in range(0, num_segs):
+    for i in vid_segs:
         idxs.append(i)
 
-    os.chdir("..") 
 
     numreps = 0
     seg = []
