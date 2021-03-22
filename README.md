@@ -4,7 +4,7 @@
 Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals in learning to read lips, in an isolated setting or in conjunction with other assistive modalities (haptic device, cochlear implant, hearing aid).
 
 # Help with videos
-We encourage anyone that is considering helping, to add to our training data by sending a video of themselves reciting a **column** of words from the confusable pairs [list](https://docs.google.com/document/d/1RfgYMfz1IBhVNNRd84miKrfkIJbT7OiZ_k-w_hcaF0A/edit?usp=sharing). Please send either the [video](https://github.com/arikanev/accessibility-tools/blob/main/README.md#Recording-videos) or a downloadable link to it, to arikanevsky@gmail.com.
+[record a video](https://github.com/arikanev/accessibility-tools/blob/main/README.md#Recording-videos), and send it to arikanevsky@gmail.com
 
 [Current video archive](https://drive.google.com/drive/folders/1ALMMmjeSFkHpLxhxc-r0llzCmVpYWe4O?usp=sharing)
 
@@ -74,7 +74,7 @@ The following command will run training through all video segments of all availa
 
 The following command will run training through all video segments of specified video (in this case, 3):
 
-`python3 play_some_segs.py -v 3`
+`python3 play_some_segs.py -v 3 -tr`
 
 # Documentation
 
@@ -132,7 +132,7 @@ User should wait a few seconds until the camera is activated for recording (gree
 
 When the prompt is finished press 'q' in terminal, the video capture stops.
 
-Segmentation and captioning is then done automatically, and playback is the same as any other video. The below GIF shows the playback method from [example 2](https://github.com/arikanev/accessibility-tools/blob/main/README.md#example-2)
+Segmentation and captioning is then done automatically, and playback is the same as any other video. The below GIF shows the recording process, and the second playback method from [example 2](https://github.com/arikanev/accessibility-tools/blob/main/README.md#example-3)
 
 ![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/recording.gif)
 
