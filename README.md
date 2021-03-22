@@ -185,6 +185,6 @@ Segmentation and captioning is then done automatically, and playback is the same
 
 - add speech rec as alternative option to text boxes, argparse
 
-Huge credits for a lot of the core brain of this project goes to [`ffmpeg`](https://github.com/FFmpeg/FFmpeg) and [`mpv`](https://github.com/mpv-player/mpv)
+Huge credits for a lot of the core brain of this project goes to [`ffmpeg`](https://github.com/FFmpeg/FFmpeg), [`mpv`](https://github.com/mpv-player/mpv), and google cloud speech api.
 
 ### - separate accessibility tool project: TooLoud interface of some sort. (phones or haptics?)
