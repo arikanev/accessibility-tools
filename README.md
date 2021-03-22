@@ -32,6 +32,20 @@ Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals i
 
 `bash main.sh`
 
+### Recording videos
+
+`bash record.sh`
+
+User is presented a prompt to speak, and is recorded speaking words of their choosing (preferably from the confusable pairs word list). 
+
+User should wait a few seconds until the camera is activated for recording (green light for my mac OSX), then follow the prompt in the terminal.
+
+When the prompt is finished press 'q' in terminal, the video capture stops.
+
+Segmentation and captioning is then done automatically, and playback is the same as any other video. The below GIF shows the recording process, and the second playback method from [example 3](https://github.com/arikanev/accessibility-tools/blob/main/README.md#example-3)
+
+<p align="center"> <img src="https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/recording.gif"></p>
+
 ### Run a basic session.
 
 ### Example 1
@@ -121,20 +135,6 @@ Results are calculated at the end of testing.
 We would like there to be additional modes for testing to reduce the scope/difficulty/number of potential answers, specifically a multiple choice mode and a confusable pair mode, to be more isolating/conducive to an experimental environment to test efficacy of alternative modalities for deaf and hard of hearing.
 
 ![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/t.gif)
-
-### Recording videos
-
-`bash record.sh`
-
-User is presented a prompt to speak, and is recorded speaking words of their choosing (preferably from the confusable pairs word list). 
-
-User should wait a few seconds until the camera is activated for recording (green light for my mac OSX), then follow the prompt in the terminal.
-
-When the prompt is finished press 'q' in terminal, the video capture stops.
-
-Segmentation and captioning is then done automatically, and playback is the same as any other video. The below GIF shows the recording process, and the second playback method from [example 3](https://github.com/arikanev/accessibility-tools/blob/main/README.md#example-3)
-
-<p align="center"> <img src="https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/recording.gif"></p>
 
 
 ### CLI options
