@@ -170,23 +170,4 @@ We would like there to be additional modes for testing to reduce the scope/diffi
                         indices of specific video segments to select across all video files specified. (Key-generator).
 
 
-
-### Future Steps!
-
-- Lets get youtube sourcing from first version (pytube lib), interfacing with the code in the second version, for increased funcitionality of second version. 
-  - Can simply add youtube link to CLI args embedded in bash script, and add arg for youtube link in v2/split_vid.py. The code for downloading youtube vid is in v1/rand_seg.py
-
-- Display speech recognition interface (basically make it easier to capture user speech at correct moments) in dialog/popup boxes
-  - dig into SpeechRecognition api, eventually use some sort of more customizable alternative, parratron, live transcribe, something for HOH speech to be understood
-  -  https://github.com/speechbrain/speechbrain 
-  -  https://speechbrain.github.io
-
-- MPV player should remain open as popup for user input appears after each vid. Try increasing CPU threads to 2 and/or running parallel process.
-
-- Haptic isolation training tool - decrease brightness over time of videos.
-
-- add speech rec as alternative option to text boxes, argparse
-
 Huge credits for a lot of the core brain of this project goes to [`ffmpeg`](https://github.com/FFmpeg/FFmpeg), [`mpv`](https://github.com/mpv-player/mpv), and google cloud speech api.
-
-### - separate accessibility tool project: TooLoud interface of some sort. (phones or haptics?)
