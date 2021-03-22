@@ -128,9 +128,9 @@ We would like there to be additional modes for testing to reduce the scope/diffi
 
 User is presented a prompt to speak, and is recorded speaking words of their choosing (preferably from the confusable pairs word list). 
 
-User should wait a few seconds until the camera is activated for recording (green light for my mac OSX), then follow the "speak" prompt in the terminal.
+User should wait a few seconds until the camera is activated for recording (green light for my mac OSX), then follow the prompt in the terminal.
 
-By saying "finished", the speech reco stops, and by pressing 'q' in terminal, the video capture stops.
+When the prompt is finished press 'q' in terminal, the video capture stops.
 
 Segmentation and captioning is then done automatically, and playback is the same as any other video. The below GIF shows the playback method from [example 2](https://github.com/arikanev/accessibility-tools/blob/main/README.md#example-2)
 
