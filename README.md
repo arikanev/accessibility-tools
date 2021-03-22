@@ -134,7 +134,7 @@ When the prompt is finished press 'q' in terminal, the video capture stops.
 
 Segmentation and captioning is then done automatically, and playback is the same as any other video. The below GIF shows the playback method from [example 2](https://github.com/arikanev/accessibility-tools/blob/main/README.md#example-2)
 
-![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/record.gif)
+![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/recording.gif)
 
 
 ### CLI options
