@@ -36,7 +36,7 @@ Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals i
 
 `bash record.sh`
 
-User is presented a prompt to speak, and is recorded speaking words of their choosing (preferably from the confusable pairs word list). 
+User is presented a prompt to speak, and is recorded speaking words of their choosing (preferably from a confusable minimal pairs word list). 
 
 User should wait a few seconds until the camera is activated for recording (green light for my mac OSX), then follow the prompt in the terminal.
 
