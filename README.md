@@ -167,7 +167,7 @@ We would like there to be additional modes for testing to reduce the scope/diffi
 `--wcor, -wc `          modified training mode will now include some testing features (warm up).
 
 `--vidxs VIDXS, -vi VIDXS`
-                        indices of specific video segments to select across all video files specified. (Key-generator).
+                        indices of specific video segments to select across all video files specified. If used, overrides idxs argument. (Key-generator).
 
 
 Huge credits for a lot of the core brain of this project goes to [`ffmpeg`](https://github.com/FFmpeg/FFmpeg), [`mpv`](https://github.com/mpv-player/mpv), and google cloud speech api.
