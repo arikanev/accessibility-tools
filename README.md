@@ -42,7 +42,7 @@ User should wait a few seconds until the camera is activated for recording (gree
 
 When the prompt is finished press `q` in terminal, the video capture stops.
 
-Segmentation and captioning is then done automatically, and playback is the same as any other video. 
+Segmentation and captioning is then done automatically, and playback is through the `play_some_segs.py` CLI tool, usage detailed below. 
 
 The below GIF shows the recording process, and the second playback method from [example 3](https://github.com/arikanev/accessibility-tools/blob/main/README.md#example-3)
 
