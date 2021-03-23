@@ -40,7 +40,7 @@ User is presented a prompt to speak, and is recorded speaking words of their cho
 
 User should wait a few seconds until the camera is activated for recording (green light for my mac OSX), then follow the prompt in the terminal.
 
-When the prompt is finished press 'q' in terminal, the video capture stops.
+When the prompt is finished press `q` in terminal, the video capture stops.
 
 Segmentation and captioning is then done automatically, and playback is the same as any other video. 
 
