@@ -10,6 +10,8 @@ Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals i
 
 # CLI Install / Setup
 
+`git clone https://github.com/arikanev/accessibility-tools.git`
+
 ### mac OSX
 
 `brew install ffmpeg portaudio`
@@ -27,6 +29,8 @@ Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals i
 `pip3 install SpeechRecognition gdown pyspellchecker`
 
 ## v2 quick start
+
+`cd accessibility-tools/`
 
 ### Download hosted videos, create tables, create segments.
 
