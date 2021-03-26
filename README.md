@@ -12,19 +12,19 @@ Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals i
 
 `git clone https://github.com/arikanev/accessibility-tools.git`
 
-### mac OSX
+## mac OSX
 
 `brew install ffmpeg portaudio`
 
 `pip3 install pyaudio`
 
-### linux
+## linux
 
 `sudo apt-get install python-pyaudio python3-pyaudio`
 
 `sudo apt install ffmpeg`
 
-### general requirements (OSX, linux, etc.)
+## general requirements (OSX, linux, etc.)
 
 `pip3 install SpeechRecognition gdown pyspellchecker`
 
@@ -32,11 +32,11 @@ Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals i
 
 `cd accessibility-tools/`
 
-### Download hosted videos, create tables, create segments.
+## Download hosted videos, create tables, create segments.
 
 `bash main.sh`
 
-### Recording videos
+## Recording videos
 
 `bash record.sh`
 
@@ -52,7 +52,7 @@ The below GIF shows the recording process, and the second playback method from [
 
 <p align="center"> <img src="https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/recording.gif"></p>
 
-### Run a basic session.
+## Run a basic session.
 
 ### Example 1
 
@@ -98,7 +98,7 @@ The following command will run training through all video segments of specified 
 
 # Documentation
 
-### Training `(--train)`
+## Training `(--train)`
 
 `(-tr)`
 
@@ -108,7 +108,7 @@ This mode is purely for the user to get familiar with the corpus.
 
 ![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/tr.gif)
 
-### Modified training `(--train --trainm)`
+## Modified training `(--train --trainm)`
 
 `(-tr -trm)`
 
@@ -118,7 +118,7 @@ This mode is purely for the user to gauge their own skill/ability.
 
 ![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/trtrm.gif)
 
-### Modified training with correct `(--train --trainm --wcor)`
+## Modified training with correct `(--train --trainm --wcor)`
 
 `(-tr -trm -wc)`
 
@@ -130,7 +130,7 @@ This mode enables some extra pressure, a sort of warm-up for testing.
 
 ![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/trtrmwc.gif)
 
-### Testing `(--test)`
+## Testing `(--test)`
 
 `(-t)`
 
@@ -143,7 +143,7 @@ We would like there to be additional modes for testing to reduce the scope/diffi
 ![alt text](https://github.com/arikanev/accessibility-tools/blob/main/v2/assets/t.gif)
 
 
-### CLI options
+## CLI options
 
 `--range RANGE RANGE, -r RANGE RANGE`
                         start and end integer range of video segments to select.
