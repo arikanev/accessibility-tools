@@ -28,7 +28,7 @@ Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals i
 
 `pip3 install SpeechRecognition gdown pyspellchecker`
 
-## v2 quick start
+# v2 quick start
 
 `cd accessibility-tools/`
 
