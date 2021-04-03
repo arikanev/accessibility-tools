@@ -67,7 +67,7 @@ def main():
         print("About to run: {}".format(cmd))
         check_call(shlex.split(cmd), universal_newlines=True)
 
-        if subtitle[n] != "START":
+        if subtitle[n] != "START" and subtitle[n] != "GARBAGE":
             f = open("{}-seg-{}.srt".format(pth, n), "w")
             f.write('{}\n{}\n{}'.format(1, str(datetime.timedelta(milliseconds=0)) + ",000" + " --> " + str(datetime.timedelta(milliseconds=split_length[n])) + ",000" , subtitle[n]))
             f.close()
