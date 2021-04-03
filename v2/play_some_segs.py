@@ -292,10 +292,6 @@ elif args.range:
         idxs.append(i)
 
 
-
-if args.shuffle:
-    shuffle(idxs)
-
 if type(args.numreps) == list:
     args.numreps = args.numreps[0]
 
@@ -359,6 +355,9 @@ else:
     for i in vid_segs:
         idxs.append(i)
 
+
+    if args.shuffle:
+        shuffle(idxs)
 
     numreps = 0
     seg = []
