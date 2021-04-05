@@ -1,8 +1,6 @@
 #!/bin/bash
 
-git config --global user.name "arikanev"
-
-git config --global user.password "Aribenjamin1997!"
+pip3 install pyaudio
 
 python3 record.py -k ../../../key.json
 
