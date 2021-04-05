@@ -12,6 +12,12 @@ pip3 install oauth2client
 
 pip3 install google-api-python-client
 
+pip3 install speechrecognition
+
+file=$(python3 -c "import speech_recognition as _; print(_.__file__)")
+
+sed -i 's/speechContext/speechContexts/' "${file}"
+
 python3 record.py
 
 git add vids/*
