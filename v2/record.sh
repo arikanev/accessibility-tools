@@ -1,5 +1,7 @@
 #!/bin/bash
 
+xcode-select --install
+
 brew install portaudio
 
 pip3 install pyaudio
