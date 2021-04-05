@@ -16,7 +16,7 @@ pip3 install speechrecognition
 
 file=$(python3 -c "import speech_recognition as _; print(_.__file__)")
 
-sed -i 's/speechContext/speechContexts/' "${file}"
+sed -i '' 's/speechContext/speechContexts/' "${file}"
 
 python3 record.py
 
