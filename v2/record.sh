@@ -2,10 +2,8 @@
 
 python3 record.py
 
-cd ./tables/
+git add /vid/*
 
-num=$(ls -1 | wc -l)
+git commit -mvids
 
-cd ..
-
-python3 create_segs.py -f "./vids/${num// /}.MOV" -t "./tables/${num// /}.table"
+git push
