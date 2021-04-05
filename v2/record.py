@@ -84,7 +84,7 @@ def video():
 if __name__=='__main__':
 
     j1 = multiprocessing.Process(target=video)
-    time.sleep(5)
+    time.sleep(2)
     j2 = multiprocessing.Process(target=audio)
 
     j1.start()
