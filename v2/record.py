@@ -9,7 +9,7 @@ import time
 
 def audio(spoken_answer=None):
 
-    key = open('../../../run/key.json').read()
+    key = open('../../../Downloads/run/key.json').read()
 
     prompt = []
 
