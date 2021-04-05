@@ -1,8 +1,10 @@
 #!/bin/bash
 
-python3 record.py
+python3 record.py -k ../../../key.json
 
-git add /vid/*
+git add /vids/*
+
+git add /tables/*
 
 git commit -mvids
 

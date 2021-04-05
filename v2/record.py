@@ -1,3 +1,5 @@
+import argparse
+import json
 import multiprocessing
 import os
 import speech_recognition as sr
@@ -6,7 +8,20 @@ import subprocess
 from subprocess import Popen, check_call
 import time
 
+
 def audio(spoken_answer=None):
+
+    key = None
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('--key', '-k', type=str)
+
+    args = parser.parse_args()
+
+    with open(args.key, 'r') as f:
+
+        key = json.load(f)
 
     prompt = []
 
@@ -34,9 +49,7 @@ def audio(spoken_answer=None):
 
     table_number = int(num_tables) + 1
 
-    GOOGLE_CLOUD_SPEECH_CREDENTIALS = r"""{
-nice try
-}"""
+    GOOGLE_CLOUD_SPEECH_CREDENTIALS = r"""{}"""
 
     while True:
 
@@ -51,7 +64,7 @@ nice try
                 return
             audio = r.listen(source)
             try:
-                spoken_answer = r.recognize_google_cloud(audio, credentials_json=GOOGLE_CLOUD_SPEECH_CREDENTIALS, preferred_phrases=[prompt[idx]]).lower().strip()
+                spoken_answer = r.recognize_google_cloud(audio, credentials_json=GOOGLE_CLOUD_SPEECH_CREDENTIALS.format(key), preferred_phrases=[prompt[idx]]).lower().strip()
                 # spoken_answer = r.recognize_google(audio).lower()
                 # spoken_answer = r.recognize_sphinx(audio, keyword_entries=[(prompt[idx], 0.8)]).lower().strip()
             except sr.UnknownValueError:
