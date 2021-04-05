@@ -8,7 +8,11 @@ brew install portaudio
 
 pip3 install pyaudio
 
-python3 record.py -k ../../../key.json
+pip3 install oauth2client
+
+pip3 install google-api-python-client
+
+python3 record.py
 
 git add vids/*
 
