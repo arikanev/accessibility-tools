@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pip3 install wheel
+
 xcode-select --install
 
 brew install portaudio
