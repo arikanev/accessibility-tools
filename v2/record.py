@@ -67,13 +67,11 @@ def audio(spoken_answer=None):
                 with open('{}.table'.format(table_number), 'a') as table:
                     table.write("{}. {} {} - {}\n".format(idx, "GARBAGE", 0, time.time() - start_reco))
 
-def video():
+def video(audio_idx):
 
     os.chdir('./vids/')
     num_vids = subprocess.getoutput("ls -1 | wc -l")
     vid_number = int(num_vids) + 1
-    subprocess.Popen("ffmpeg -f avfoundation -list_devices true -i \"\"", shell=True)
-    audio_idx = input("select audio channel")
     p = Popen(shlex.split("ffmpeg -loglevel quiet -f avfoundation -framerate 30 -i 0:{} {}.mkv".format(audio_idx, vid_number)), universal_newlines=True)
     if p.poll() is None:
         print("video starting")
@@ -84,8 +82,11 @@ def video():
     return
 
 if __name__=='__main__':
+    
+    subprocess.Popen("ffmpeg -f avfoundation -list_devices true -i \"\"", shell=True)
+    audio_idx = input("select audio channel")
 
-    j1 = multiprocessing.Process(target=video)
+    j1 = multiprocessing.Process(target=video, args=(audio_idx,))
     time.sleep(1)
     j2 = multiprocessing.Process(target=audio)
 
