@@ -72,7 +72,7 @@ def video():
     os.chdir('./vids/')
     num_vids = subprocess.getoutput("ls -1 | wc -l")
     vid_number = int(num_vids) + 1
-    check_call(shlex.split("ffmpeg -f avfoundation -list_devices true -i """))
+    subprocess.Popen("ffmpeg -f avfoundation -list_devices true -i \"\"", shell=True)
     audio_idx = input("select audio channel")
     p = Popen(shlex.split("ffmpeg -loglevel quiet -f avfoundation -framerate 30 -i 0:{} {}.mkv".format(audio_idx, vid_number)), universal_newlines=True)
     if p.poll() is None:
