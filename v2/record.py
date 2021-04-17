@@ -50,7 +50,7 @@ def audio(spoken_answer=None):
                 return
             audio = r.listen(source)
             try:
-                spoken_answer = r.recognize_google_cloud(audio, credentials_json=key, preferred_phrases=[prompt[idx]], language="ru-RU").lower().strip()
+                spoken_answer = r.recognize_google_cloud(audio, credentials_json=key, preferred_phrases=[prompt[idx]]).lower().strip()
                 # spoken_answer = r.recognize_google(audio).lower()
                 # spoken_answer = r.recognize_sphinx(audio, keyword_entries=[(prompt[idx], 0.8)]).lower().strip()
             except sr.UnknownValueError:
