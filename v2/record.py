@@ -13,7 +13,7 @@ def audio(spoken_answer=None):
 
     prompt = []
 
-    with open('min_pair_wl_rus.txt', 'r') as wl:
+    with open('min_pair_wl.txt', 'r') as wl:
 
         l = wl.readlines()
 
