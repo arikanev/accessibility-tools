@@ -296,6 +296,15 @@ if type(args.numreps) == list:
     args.numreps = args.numreps[0]
 
 if args.vidxs:
+    
+        if args.shuffle:
+
+            l = list(vidxs.items())
+
+            shuffle(l)
+
+            vidxs = dict(l)
+    
     for vid, idxs in vidxs.items():
 
         numreps = 0
