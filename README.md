@@ -3,11 +3,6 @@
 # Overview
 Accessibility-tools is aimed at assisting deaf and hard-of-hearing individuals in learning to read lips, in an isolated setting or in conjunction with other assistive modalities (haptic device, cochlear implant, hearing aid).
 
-# Help with videos
-[record a video](https://github.com/arikanev/accessibility-tools/blob/main/README.md#Recording-videos), and send it to arikanevsky@gmail.com
-
-[Current video archive](https://drive.google.com/drive/folders/1ALMMmjeSFkHpLxhxc-r0llzCmVpYWe4O?usp=sharing)
-
 # CLI Install / Setup
 
 `git clone https://github.com/arikanev/accessibility-tools.git`
